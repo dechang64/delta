@@ -1,0 +1,20 @@
+# Data files (too large for GitHub)
+*.json
+*.csv
+*.zip
+*.log
+
+# Checkpoints
+llm_*checkpoint*.json
+
+# Old figures (keep figures_final/)
+figures/
+figures_llm/
+figures_llm_v2/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
