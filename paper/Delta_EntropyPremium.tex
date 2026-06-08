@@ -66,7 +66,55 @@ The entropy premium is robust across sub-periods: insignificant in 2005--2014 bu
 
 We develop a theoretical model in which LLM agent entropy signals the degree of overconfidence in the information environment. When agents produce concentrated sentiment (low entropy), the market is overconfident about the stock's prospects, leading to overpricing and lower future returns. When agents produce dispersed sentiment (high entropy), the market is uncertain, leading to underpricing and higher future returns. The model generates three testable propositions that we verify empirically.
 
-Section~\ref{sec:theory} develops the theoretical framework. Section~\ref{sec:data} describes the data and methodology. Section~\ref{sec:results} reports the main results. Section~\ref{sec:robust} reports robustness checks. Section~\ref{sec:discussion} discusses implications. Section~\ref{sec:conclusion} concludes.
+Section~\ref{sec:lit} reviews the related literature. Section~\ref{sec:theory} develops the theoretical framework. Section~\ref{sec:data} describes the data and methodology. Section~\ref{sec:results} reports the main results. Section~\ref{sec:robust} reports robustness checks. Section~\ref{sec:discussion} discusses implications. Section~\ref{sec:conclusion} concludes.
+
+\section{Literature Review}\label{sec:lit}
+
+\subsection{Investor Disagreement and Asset Pricing}
+
+The theoretical foundation for disagreement-based asset pricing is \citet{Miller1977}, who argues that when investors disagree and short-selling is costly, asset prices reflect the most optimistic valuation, leading to overpricing. This prediction has received mixed empirical support. \citet{Diether2002} find that stocks with higher analyst forecast dispersion earn lower future returns, consistent with the Miller overpricing mechanism. However, \citet{Johnson2004} show that this effect may reflect risk compensation rather than overpricing, as dispersion proxies for cash flow uncertainty. \citet{BaliHovakimian2009} find that volatility spreads---a different measure of disagreement---predict returns with the opposite sign.
+
+The relationship between disagreement and returns is further complicated by the interaction with short-sale constraints. \citet{HongStein2003} develop a model in which disagreement, combined with short-sale constraints, leads to market crashes. \citet{Boehme2006} confirm that the negative dispersion-return relationship is concentrated in stocks with high short-sale constraints. \citet{ChenHongStein2001} show that trading volume---a proxy for disagreement---predicts conditional skewness, consistent with the \citet{HongStein2003} mechanism.
+
+More recent work has refined the disagreement measure. \citet{Banerjee2011} develops a model in which investors learn from prices, generating endogenous disagreement. \citet{Carlin2009} show that disagreement is time-varying and predicts asset price dynamics. \citet{Anderson2005} find that heterogeneous beliefs matter for asset pricing, but the effect depends on the measure used. \citet{Yu2011} shows that disagreement predicts portfolio returns, with stronger effects for stocks that are harder to arbitrage.
+
+A key limitation of this literature is that disagreement measures---analyst forecast dispersion, trading volume, return volatility---capture only the \textit{first moment} of the belief distribution. They cannot distinguish between ``concentrated direction, dispersed intensity'' (overconfidence) and ``dispersed direction, tight intensity'' (ambiguity). Our entropy measure captures this distinction.
+
+\subsection{Overconfidence and Asset Pricing}
+
+The overconfidence literature provides the behavioral foundation for our entropy premium. \citet{Daniel1998} develop a model in which overconfident investors overreact to private signals and underreact to public information, generating predictable return patterns. \citet{Daniel2001} extend this framework to show that overconfidence leads to mispricing that is not arbitraged away. \citet{ScheinkmanXiong2003} model speculative bubbles driven by overconfidence, where asset prices exceed even the most optimistic investor's valuation.
+
+Empirically, \citet{BarberOdean2001} show that men trade more than women (consistent with greater overconfidence) and earn lower risk-adjusted returns. \citet{GervaisOdean2001} develop a model in which traders become overconfident through biased self-attribution of success. \citet{Hirshleifer2001} reviews the broader implications of investor psychology for asset pricing.
+
+Our contribution is to provide a \textit{measure} of overconfidence---LLM agent entropy---that is observable in real time and does not require ex-post inference from trading behavior. Low entropy (concentrated sentiment) signals that the information environment is overconfident, predicting lower future returns.
+
+\subsection{Ambiguity Aversion and Knightian Uncertainty}
+
+A separate literature studies the effect of ambiguity (Knightian uncertainty) on asset pricing. \citet{EpsteinSchneider2008} show that ambiguity-averse investors demand a premium for holding assets with uncertain information quality. \citet{EpsteinSchneider2010} review the broader implications of ambiguity for asset markets. \citet{IlutSchneider2014} develop a business cycle model with ambiguity-averse agents.
+
+Our entropy measure captures a different dimension: not the ambiguity of the information environment (which would correspond to \textit{high} entropy), but the overconfidence of the information environment (which corresponds to \textit{low} entropy). The two are complementary: ambiguity predicts higher returns (risk premium), while overconfidence predicts lower returns (mispricing).
+
+\subsection{Entropy and Information Theory in Finance}
+
+Information theory has a long history in finance, but Shannon entropy has been underutilized as a cross-sectional predictor. \citet{Shannon1948} introduced the entropy measure that bears his name. \citet{CoverThomas2006} provide the standard reference. \citet{PhilippatosWilson1972} were among the first to apply entropy to portfolio selection, and \citet{BeraPark2008} use maximum entropy principles for portfolio diversification.
+
+In market microstructure, \citet{Pincus1991} developed approximate entropy as a measure of system complexity. \citet{Risso2009} applies Shannon entropy to detect financial crises, finding that entropy declines before crashes. \citet{Bekiros2015} use entropy-based network dynamics to study information diffusion across equity and commodity markets. \citet{Maasoumi1993} provides a comprehensive review of information theory applications in economics.
+
+Our contribution is to apply Shannon entropy to the \textit{cross-section} of stock returns, using LLM agent sentiment as the probability distribution. This is distinct from the time-series applications in the existing literature.
+
+\subsection{LLMs in Finance}
+
+The application of large language models to finance is rapidly growing. \citet{LopezTang2023} show that ChatGPT can forecast stock price movements using news headlines. \citet{Kim2024} use generative AI to uncover corporate risks from earnings call transcripts. \citet{Yang2020} develop FinBERT, a pretrained financial language model. \citet{Wu2023} introduce BloombergGPT, a large language model specifically trained on financial data.
+
+Most relevant to our work, \citet{Chen2025inner} show that token-level softmax entropy is an ``honest'' uncertainty signal for LLMs, with inner confidence correlating at $r = 0.972$ with delta confidence. This validates our use of entropy as a meaningful measure of LLM agent uncertainty.
+
+Multi-agent LLM systems are an emerging area. \citet{TradingAgents2024} develop a multi-agent trading framework. \citet{FinVision2024} propose a multi-agent stock prediction system. \citet{TwinMarket2024} build a scalable market simulation using LLM agents. Our contribution is to show that the \textit{disagreement structure} of multi-agent LLM systems---not just the consensus---contains economically meaningful information.
+
+\subsection{Textual Analysis and Sentiment}
+
+Our work builds on the textual analysis literature in finance. \citet{Loughran2011} develop the Loughran-McDonald financial lexicon, showing that general-purpose sentiment dictionaries are inappropriate for financial text. \citet{Tetlock2007} shows that media pessimism predicts market behavior. \citet{BakerWurgler2006} construct a sentiment index that predicts the cross-section of stock returns, with stronger effects for small, young, and volatile stocks. \citet{BakerWurgler2007} review the broader sentiment literature. \citet{Garcia2013} shows that sentiment's predictive power is stronger during recessions. \citet{Huang2015} develop an aligned sentiment index that outperforms the Baker-Wurgler index.
+
+Our entropy measure differs from these approaches in two ways. First, we measure the \textit{structure} of sentiment (entropy), not the \textit{level} (positive/negative). Second, our sentiment comes from LLM agents processing structured financial data, not from textual analysis of news or filings.
 
 \section{Theoretical Framework}\label{sec:theory}
 
