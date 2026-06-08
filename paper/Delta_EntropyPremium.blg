@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Delta_EntropyPremium.aux
 The style file: plainnat.bst
 Database file #1: references.bib
-You've used 44 entries,
+You've used 43 entries,
             2773 wiz_defined-function locations,
-            881 strings with 11178 characters,
-and the built_in function-call counts, 19806 in all, are:
-= -- 1833
-> -- 997
+            879 strings with 11162 characters,
+and the built_in function-call counts, 19389 in all, are:
+= -- 1799
+> -- 967
 < -- 30
-+ -- 342
-- -- 297
-* -- 1624
-:= -- 3031
-add.period$ -- 132
-call.type$ -- 44
-change.case$ -- 229
++ -- 331
+- -- 288
+* -- 1586
+:= -- 2964
+add.period$ -- 129
+call.type$ -- 43
+change.case$ -- 223
 chr.to.int$ -- 43
-cite$ -- 88
-duplicate$ -- 891
-empty$ -- 1697
-format.name$ -- 373
-if$ -- 4117
-int.to.chr$ -- 2
+cite$ -- 86
+duplicate$ -- 871
+empty$ -- 1666
+format.name$ -- 363
+if$ -- 4033
+int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 44
-newline$ -- 228
-num.names$ -- 176
-pop$ -- 403
+missing$ -- 43
+newline$ -- 223
+num.names$ -- 172
+pop$ -- 391
 preamble$ -- 1
-purify$ -- 185
+purify$ -- 180
 quote$ -- 0
-skip$ -- 669
+skip$ -- 657
 stack$ -- 0
-substring$ -- 1022
-swap$ -- 56
+substring$ -- 1020
+swap$ -- 53
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 479
+type$ -- 468
 warning$ -- 0
-while$ -- 201
+while$ -- 198
 width$ -- 0
-write$ -- 570
+write$ -- 558

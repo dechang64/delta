@@ -1,4 +1,4 @@
-\begin{thebibliography}{44}
+\begin{thebibliography}{43}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -60,15 +60,10 @@ Joseph Chen, Harrison Hong, and Jeremy~C. Stein.
 \newblock Forecasting crashes: Trading volume, past returns, and conditional skewness in stock prices.
 \newblock \emph{Journal of Financial Economics}, 61\penalty0 (3):\penalty0 345--381, 2001.
 
-\bibitem[Chen et~al.(2025{\natexlab{a}})Chen, Liu, and Zhang]{Chen2025}
+\bibitem[Chen et~al.(2025)Chen, Liu, and Zhang]{Chen2025inner}
 Yifei Chen, Haotian Liu, and Wei Zhang.
 \newblock Inner confidence in large language models.
-\newblock \emph{NBER Working Paper No. 34965}, 2025{\natexlab{a}}.
-
-\bibitem[Chen et~al.(2025{\natexlab{b}})Chen, Liu, and Zhang]{Chen2025inner}
-Yifei Chen, Haotian Liu, and Wei Zhang.
-\newblock Inner confidence in large language models.
-\newblock \emph{NBER Working Paper No. 34965}, 2025{\natexlab{b}}.
+\newblock \emph{NBER Working Paper No. 34965}, 2025.
 
 \bibitem[Cover and Thomas(2006)]{CoverThomas2006}
 Thomas~M. Cover and Joy~A. Thomas.
