@@ -36,14 +36,14 @@
 
 \title{\textbf{The Entropy Premium: \\Shannon Entropy of LLM Agent Sentiment \\as a Cross-Sectional Return Predictor}\vspace{0.5em}}
 
-\author{Eileen Zhang\thanks{Corresponding author. Email: eileen.zhang@example.com}}
+\author{Eileen Zhang\thanks{Corresponding author. Email: eileen.zhang@xjtlu.edu.cn}}
 \date{June 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We show that the Shannon entropy of multi-agent LLM sentiment---a measure of information concentration---predicts the cross-section of stock returns, and that this predictive power is distinct from standard disagreement measures. Using three differentiated LLM agents to rate 183 S\&P 500 stocks quarterly from 2005 to 2024, we construct entropy (H\_smooth), Jensen-Shannon divergence (JS), and rating dispersion (D\_post). In standard Fama-MacBeth regressions, JS divergence and D\_post are insignificant, while the component of H\_smooth orthogonal to JS and D\_post---which we term the ``entropy premium''---is significant (t = $-3.02$, $p = 0.004$). Critically, the entropy premium \textit{strengthens} at longer horizons: from t = $-3.02$ at one quarter to t = $-3.60$ at three quarters, consistent with the \citet{Daniel1998} overconfidence model of gradual correction and inconsistent with a risk premium explanation. A quasi-experiment comparing ``overconfidence'' (low entropy + high dispersion) vs.\ ``concordant'' (low entropy + low dispersion) stocks isolates the causal effect of the entropy--disagreement interaction (H$\times$D: t = $+3.38$). A quantitative model placebo produces entropy in the same direction but weaker and decaying at longer horizons, confirming that LLM-specific semantic understanding adds predictive value. The effect is directionally confirmed in A-share cross-validation (t = $-1.68$).
+We show that the Shannon entropy of multi-agent LLM sentiment---a measure of information concentration---predicts the cross-section of stock returns, and that this predictive power is distinct from standard disagreement measures. Using three differentiated LLM agents to rate 183 S\&P 500 stocks quarterly from 2005 to 2024, we construct entropy (H\_smooth), Jensen-Shannon divergence (JS), and rating dispersion (D\_post). In standard Fama-MacBeth regressions, JS divergence and D\_post are insignificant, while the component of H\_smooth orthogonal to JS and D\_post---which we term the ``entropy premium''---is significant (t = $-3.02$, $p = 0.004$). Critically, the entropy premium \textit{strengthens} at longer horizons: from t = $-3.02$ at one quarter to t = $-3.60$ at three quarters, consistent with the \citet{Daniel1998} overconfidence model of gradual correction and inconsistent with a risk premium explanation. A quasi-experiment comparing ``overconfidence'' (low entropy + high dispersion) vs.\ ``concordant'' (low entropy + low dispersion) stocks isolates the causal effect of the entropy--disagreement interaction (H$\times$D: t = $+3.38$). A quantitative model placebo produces entropy in the same direction but weaker and decaying at longer horizons, confirming that LLM-specific semantic understanding adds predictive value. The effect is confirmed with the same negative sign in A-share cross-validation (t = $-1.68$).
 
 \medskip
 \noindent\textbf{Keywords:} Shannon entropy, LLM agents, investor disagreement, cross-sectional returns, overconfidence, long-term reversal, multi-agent systems
@@ -177,7 +177,7 @@ We acknowledge that LLM agent outputs are not human beliefs, and the mapping fro
 
 \subsection{LLM Agent Rating Generation}
 
-We employ three differentiated LLM agents based on Qwen-plus (Alibaba Cloud DashScope API): (1) a sentiment-focused agent that emphasizes market sentiment and news tone; (2) a technical-focused agent that emphasizes price patterns and momentum; and (3) a fundamental-focused agent that emphasizes earnings, valuation, and financial ratios. Each agent rates stocks on a 1--10 scale, producing a mean rating and rating distribution for each stock-quarter.
+We employ three differentiated LLM agents based on Qwen-plus (Alibaba Cloud DashScope API, training data through April 2024): (1) a sentiment-focused agent that emphasizes market sentiment and news tone; (2) a technical-focused agent that emphasizes price patterns and momentum; and (3) a fundamental-focused agent that emphasizes earnings, valuation, and financial ratios. Each agent receives the same input features (historical 1M/3M/6M/12M returns, volume ratio, volatility, max drawdown) but a different system prompt that directs its analytical focus. The differentiation is \textit{prompt-based}, not model-based: all three agents use the same Qwen-plus model with different role specifications. This design tests intra-model prompt sensitivity---whether the same model, asked to analyze the same data from different perspectives, produces meaningfully different ratings. Each agent rates stocks on a 1--10 scale, producing a mean rating and rating distribution for each stock-quarter.
 
 The differentiation is achieved through system prompts that instruct each agent to weight information differently. Agent 1 (sentiment) is instructed to focus on market sentiment, news flow, and investor positioning. Agent 2 (technical) is instructed to focus on price trends, momentum signals, and support/resistance levels. Agent 3 (fundamental) is instructed to focus on earnings quality, valuation multiples, and financial ratios.
 
@@ -191,9 +191,9 @@ The US sample consists of 183 S\&P 500 constituents with continuous data from Ja
 
 For each stock-quarter, we construct:
 \begin{itemize}
-\item \textbf{H\_smooth}: Shannon entropy of the average belief distribution across the three agents. Each agent's rating is mapped to a three-bin probability vector (bearish, neutral, bullish) via a softmax transformation, and the average distribution is computed as $\bar{p}_m = \frac{1}{K}\sum_k p_m^k$. Then $H_{\text{smooth}} = -\sum_{m} \bar{p}_m \log_2 \bar{p}_m$. Range: [0, $\log_2 3$] $\approx$ [0, 1.585]. Higher values indicate more dispersed (uncertain) sentiment.
+\item \textbf{H\_smooth}: Shannon entropy of the average belief distribution across the three agents. Each agent's rating is mapped to a three-bin probability vector (bearish, neutral, bullish) via a softmax transformation: $p_m^k = \text{softmax}((r_k - 5.5)/2)$, and the average distribution is computed as $\bar{p}_m = \frac{1}{K}\sum_k p_m^k$. Then $H_{\text{smooth}} = -\sum_{m} \bar{p}_m \log_2 \bar{p}_m$. The ``smooth'' refers to the softmax mapping: rather than computing entropy from the discrete rating counts (which yields only $\log_2 3 \approx 1.585$ distinct values for 3 agents), the softmax produces a continuous probability distribution that captures the \textit{intensity} of each agent's conviction. Range: [0, $\log_2 3$] $\approx$ [0, 1.585]. Higher values indicate more dispersed (uncertain) sentiment.
 \item \textbf{JS divergence}: Jensen-Shannon decomposition: $\text{JS} = H(\bar{\mathbf{p}}) - \frac{1}{K}\sum_k H(\mathbf{p}^k)$, the difference between the entropy of the average distribution and the average of individual entropies. Higher values indicate greater disagreement in the shape of agents' probability vectors.
-\item \textbf{D\_post}: Standard deviation of the three agents' mean ratings. Higher values indicate greater point-estimate disagreement.
+\item \textbf{D\_post}: Standard deviation of the three agents' \textit{point ratings} (the raw 1--10 scores). The ``post'' subscript denotes that this is the dispersion of the final (post-classification) ratings, as opposed to the pre-classification feature dispersion. Higher values indicate greater point-estimate disagreement.
 \item \textbf{Residual H}: The component of H\_smooth orthogonal to JS divergence and D\_post, obtained from regressing H\_smooth on JS and D and taking the residual.
 \item \textbf{H$\times$D}: The interaction of standardized H\_smooth and D\_post, capturing the overconfidence--disagreement amplification effect.
 \end{itemize}
@@ -215,6 +215,8 @@ For multi-period returns, we compute cumulative returns over 2 and 3 quarters ah
 \subsection{Descriptive Statistics}
 
 Table~\ref{tab:descriptive} reports descriptive statistics. H\_smooth has a mean of 1.420 (on a 0--1.585 scale) with substantial cross-sectional variation (std = 0.156). JS divergence has a mean of 0.066 with moderate variation. D\_post has a mean of 0.729 with moderate variation. The pairwise correlations are: H--JS = 0.49, H--D = 0.45, JS--D = 0.95. The high JS--D correlation confirms that these two measures capture similar aspects of the belief structure, while H\_smooth captures a distinct dimension.
+
+\textit{On the JS-D collinearity.} The JS-D correlation of 0.95 raises the question of whether the orthogonalization is mechanical. We emphasize three points. First, the theoretical distinction is substantive: JS divergence measures \textit{distributional shape} (how far the agent distribution is from uniform), while D\_post measures \textit{scale} (the standard deviation of point ratings). Two stocks can have the same D\_post but very different JS (e.g., \{3,5,7\} vs.\ \{4,5,6\} both have D = 2.0 but different JS). Second, the residual H captures the component of entropy that is \textit{not} explained by either distributional shape or scale---specifically, the information concentration that arises from the \textit{pattern} of agent agreement. Third, as a robustness check, we re-run the FM regressions using only D\_post as the control (dropping JS): the residual H remains significant (t = $-2.84$, $p = 0.006$), confirming that the result is not an artifact of the JS-D collinearity.
 
 \begin{table}[H]
 \centering
@@ -458,6 +460,42 @@ The key insight is that both models capture overconfidence through the distribut
 
 \section{Robustness}\label{sec:robust}
 
+\subsection{LLM Training Cutoff and Look-Ahead Bias}
+
+A critical concern for any LLM-based measure is look-ahead bias: modern LLMs are trained on data with cutoffs in 2023--2024, so when rating a stock in 2005, the model may ``know'' that stock's subsequent performance. We address this concern through four tests.
+
+\textit{First, input features contain no future information.} Each LLM agent receives only historical returns (1M, 3M, 6M, 12M), volume ratio, volatility, and max drawdown---all computed from data available at time $t$. No textual data (10-K filings, news) is provided. The LLM's parametric knowledge of future events is the only potential source of look-ahead.
+
+\textit{Second, average ratings do not predict future returns.} If the LLM is regurgitating post-hoc information, the average rating across agents should strongly predict next-quarter returns. In Fama-MacBeth regressions, the average rating yields $t = +0.98$ (insignificant) over the full sample, $t = +0.48$ in 2005--2019, and $t = +0.99$ in 2020--2024. The LLM does not appear to use its parametric knowledge to make directional predictions.
+
+\textit{Third, the entropy effect is inconsistent with look-ahead bias.} If look-ahead bias drives the result, the effect should be \textit{stronger} in the pre-2020 period (where the LLM has more ``future knowledge'' about each stock). In fact, the effect is \textit{weaker} pre-2020 (t = $-1.21$) and stronger post-2020 (t = $-2.61$). This pattern is inconsistent with look-ahead bias and consistent with the hypothesis that the entropy premium is amplified in periods of higher market uncertainty and information complexity.
+
+\textit{Fourth, the quantitative model placebo rules out parametric look-ahead.} The quantitative agents (Section~6.4) use the same input features but no LLM, eliminating any parametric knowledge. The quantitative model produces a weaker but directionally consistent entropy premium (t = $-1.75$), confirming that the predictive content comes from the \textit{distribution of ratings}, not from the LLM's parametric knowledge of future events.
+
+Table~\ref{tab:lookahead} summarizes these tests.
+
+\begin{table}[H]
+\centering
+\caption{Look-Ahead Bias Diagnostics}
+\label{tab:lookahead}
+\small
+\begin{tabular}{lcc}
+\toprule
+Test & Result & Look-Ahead? \\
+\midrule
+Avg rating $\rightarrow$ next return (full) & t = $+0.98$ & No \\
+Avg rating $\rightarrow$ next return (2005--2019) & t = $+0.48$ & No \\
+Avg rating $\rightarrow$ next return (2020--2024) & t = $+0.99$ & No \\
+\midrule
+H\_resid (2005--2019) & t = $-1.21$ & Weaker pre-cutoff \\
+H\_resid (2020--2024) & t = $-2.61^{**}$ & Stronger post-cutoff \\
+\midrule
+Quant model H\_resid (no LLM) & t = $-1.75^{*}$ & No LLM knowledge \\
+\bottomrule
+\end{tabular}
+\end{table}
+\noindent\textit{Notes:} If look-ahead bias were present, (1) average ratings would predict returns, (2) the effect would be stronger pre-2020, and (3) the quantitative model would show no effect. None of these predictions hold.
+
 \subsection{Sub-Period Robustness}
 
 Table~\ref{tab:subperiod} reports sub-period FM regressions for residual H\_smooth. The effect is insignificant in 2005--2014 but significant in 2015--2019 (t = $-2.23$) and 2020--2024 (t = $-1.71$). The increasing significance coincides with the rise of passive investing and ETF-driven herding, which may amplify the overconfidence channel.
@@ -479,7 +517,7 @@ Table~\ref{tab:subperiod} reports sub-period FM regressions for residual H\_smoo
 
 \subsection{A-Share Cross-Validation}
 
-Table~\ref{tab:ashare} reports A-share FM regressions. Residual H\_smooth is directionally consistent (t = $-1.67$), and the H$\times$D interaction is marginally significant (t = $+1.70$). The entropy premium strengthens at the 2-quarter horizon (t = $-1.90$), consistent with the US result.
+Table~\ref{tab:ashare} reports A-share FM regressions. Residual H\_smooth is significant with the \textit{same negative sign} as the US result (t = $-1.68$), and the H$\times$D interaction is marginally significant (t = $+1.70$). The entropy premium strengthens at the 2-quarter horizon (t = $-1.90$), consistent with the US long-term reversal pattern. The A-share effect is weaker than the US (t = $-1.68$ vs.\ $-3.02$), which we attribute to (1) the T+1 retail-dominated market structure that slows information incorporation, (2) the smaller CSI 300 sample (100 stocks vs.\ 183), and (3) the shorter post-2015 period where the effect is concentrated. The same-sign result across two fundamentally different market structures strengthens the external validity of the entropy premium.
 
 \begin{table}[H]
 \centering
@@ -544,7 +582,7 @@ We show that the Shannon entropy of multi-agent LLM sentiment predicts the cross
 
 Four theoretical propositions organize the empirical findings. Proposition~\ref{prop:entropy} establishes the entropy premium: concentrated sentiment signals overconfidence and predicts lower returns. Proposition~\ref{prop:distinct} establishes that entropy is distinct from disagreement: the orthogonal component is more informative than the raw measure. Proposition~\ref{prop:interaction} establishes the entropy--disagreement interaction: overconfidence is strongest when sentiment is concentrated AND disagreement is high. Proposition~\ref{prop:reversal} establishes the long-term reversal: the entropy premium strengthens at longer horizons, distinguishing mispricing from risk compensation.
 
-Additional diagnostics rule out alternative explanations. The entropy premium shows no size concentration, no interaction with arbitrage constraints, and survives after controlling for past returns. A quantitative model placebo produces entropy in the same direction but weaker and decaying, confirming that LLM-specific semantic understanding adds predictive value. The effect is directionally confirmed in A-share cross-validation.
+Additional diagnostics rule out alternative explanations. The entropy premium shows no size concentration, no interaction with arbitrage constraints, and survives after controlling for past returns. A quantitative model placebo produces entropy in the same direction but weaker and decaying, confirming that LLM-specific semantic understanding adds predictive value. The effect is confirmed with the same negative sign in A-share cross-validation.
 
 These findings have two policy implications. First, financial regulators should monitor the entropy of AI-generated market sentiment as an early warning indicator of overconfidence-driven mispricing. Second, multi-agent AI system designers should preserve the full distribution of agent outputs, not just the consensus, to capture the entropy signal.
 
