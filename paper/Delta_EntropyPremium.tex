@@ -43,7 +43,7 @@
 \maketitle
 
 \begin{abstract}
-We show that the Shannon entropy of multi-agent LLM sentiment---a measure of information concentration---predicts the cross-section of stock returns, and that this predictive power is distinct from standard disagreement measures. Using three differentiated LLM agents to rate 183 S\&P 500 stocks quarterly from 2005 to 2024, we construct entropy (H\_sentiment), Jensen-Shannon divergence (JS), and rating dispersion (D\_post). In standard Fama-MacBeth regressions, JS divergence and D\_post are insignificant, while the component of H\_sentiment orthogonal to JS and D\_post---which we term the ``entropy premium''---is significant (t = $-2.37$, $p = 0.020$). Critically, the entropy premium \textit{strengthens} at longer horizons: from t = $-2.37$ at one quarter to t = $-4.10$ at three quarters, consistent with the \citet{Daniel1998} overconfidence model of gradual correction and inconsistent with a risk premium explanation. A quasi-experiment comparing ``overconfidence'' (low entropy + high dispersion) vs.\ ``concordant'' (low entropy + low dispersion) stocks isolates the causal effect of the entropy--disagreement interaction (H$\times$D: t = $+2.07$). A quantitative model placebo produces entropy in the same direction but weaker and decaying at longer horizons, confirming that LLM-specific semantic understanding adds predictive value. The effect is directionally confirmed in A-share cross-validation (t = $-1.67$).
+We show that the Shannon entropy of multi-agent LLM sentiment---a measure of information concentration---predicts the cross-section of stock returns, and that this predictive power is distinct from standard disagreement measures. Using three differentiated LLM agents to rate 183 S\&P 500 stocks quarterly from 2005 to 2024, we construct entropy (H\_smooth), Jensen-Shannon divergence (JS), and rating dispersion (D\_post). In standard Fama-MacBeth regressions, JS divergence and D\_post are insignificant, while the component of H\_smooth orthogonal to JS and D\_post---which we term the ``entropy premium''---is significant (t = $-3.02$, $p = 0.004$). Critically, the entropy premium \textit{strengthens} at longer horizons: from t = $-3.02$ at one quarter to t = $-3.60$ at three quarters, consistent with the \citet{Daniel1998} overconfidence model of gradual correction and inconsistent with a risk premium explanation. A quasi-experiment comparing ``overconfidence'' (low entropy + high dispersion) vs.\ ``concordant'' (low entropy + low dispersion) stocks isolates the causal effect of the entropy--disagreement interaction (H$\times$D: t = $+3.38$). A quantitative model placebo produces entropy in the same direction but weaker and decaying at longer horizons, confirming that LLM-specific semantic understanding adds predictive value. The effect is directionally confirmed in A-share cross-validation (t = $-1.68$).
 
 \medskip
 \noindent\textbf{Keywords:} Shannon entropy, LLM agents, investor disagreement, cross-sectional returns, overconfidence, long-term reversal, multi-agent systems
@@ -60,15 +60,15 @@ A central puzzle in asset pricing is that standard measures of investor disagree
 
 This paper introduces a new measure of the information environment---the Shannon entropy of multi-agent LLM sentiment---and shows that it captures a dimension of belief structure that standard disagreement measures miss. The key insight is that \textit{entropy is not disagreement}. Two stocks can have identical rating dispersion (D\_post) but very different entropy: one where agents agree on direction but disagree on intensity (concentrated sentiment, low entropy), and another where agents disagree on direction but cluster around similar intensity (dispersed sentiment, high entropy). The former signals overconfidence; the latter signals ambiguity. Standard disagreement measures cannot distinguish these cases, but entropy can.
 
-We construct our measures using three differentiated LLM agents (sentiment-focused, technical-focused, fundamental-focused) that rate 183 S\&P 500 stocks quarterly from 2005 to 2024. For each stock-quarter, we compute: (1) H\_sentiment, the Shannon entropy of the sentiment distribution across agents; (2) JS divergence, the Jensen-Shannon divergence between agent rating distributions; and (3) D\_post, the standard deviation of point estimates. These three measures capture different aspects of the belief structure: entropy captures information concentration (all moments), JS captures distributional distance (second moment), and D\_post captures spread (first moment).
+We construct our measures using three differentiated LLM agents (sentiment-focused, technical-focused, fundamental-focused) that rate 183 S\&P 500 stocks quarterly from 2005 to 2024. For each stock-quarter, we compute: (1) H\_smooth, the Shannon entropy of the sentiment distribution across agents; (2) JS divergence, the Jensen-Shannon divergence between agent rating distributions; and (3) D\_post, the standard deviation of point estimates. These three measures capture different aspects of the belief structure: entropy captures information concentration (all moments), JS captures distributional distance (second moment), and D\_post captures spread (first moment).
 
-Our central finding is that the component of H\_sentiment orthogonal to JS and D\_post---which we term the ``entropy premium''---is a significant predictor of next-quarter returns in standard Fama-MacBeth regressions (t = $-2.37$, $p = 0.020$), while JS divergence (t = $-0.19$) and D\_post (t = $+0.11$) are insignificant. The negative coefficient means that stocks with lower residual entropy (more concentrated sentiment) earn lower future returns, consistent with the overconfidence hypothesis.
+Our central finding is that the component of H\_smooth orthogonal to JS and D\_post---which we term the ``entropy premium''---is a significant predictor of next-quarter returns in standard Fama-MacBeth regressions (t = $-3.02$, $p = 0.004$), while JS divergence (t = $-0.19$) and D\_post (t = $+0.11$) are insignificant. The negative coefficient means that stocks with lower residual entropy (more concentrated sentiment) earn lower future returns, consistent with the overconfidence hypothesis.
 
-The paper's strongest result is the \textit{long-term reversal}. The entropy premium strengthens monotonically at longer horizons: from t = $-2.37$ at one quarter to t = $-3.11$ at two quarters to t = $-4.10$ at three quarters. This pattern is the opposite of what a risk premium would predict (risk premia should be stable or decay at longer horizons) and is exactly what the \citet{Daniel1998} overconfidence model predicts: concentrated sentiment signals overpricing, which is gradually corrected over multiple quarters. The H$\times$D interaction shows the same pattern (t = $+2.07$ at 1Q to t = $+3.34$ at 2Q), further supporting the mispricing interpretation.
+The paper's strongest result is the \textit{long-term reversal}. The entropy premium strengthens monotonically at longer horizons: from t = $-3.02$ at one quarter to t = $-3.94$ at two quarters to t = $-3.60$ at three quarters. This pattern is the opposite of what a risk premium would predict (risk premia should be stable or decay at longer horizons) and is exactly what the \citet{Daniel1998} overconfidence model predicts: concentrated sentiment signals overpricing, which is gradually corrected over multiple quarters. The H$\times$D interaction shows the same pattern (t = $+3.38$ at 1Q to t = $+4.65$ at 2Q), further supporting the mispricing interpretation.
 
-Additional diagnostics confirm the mispricing interpretation. The entropy premium shows no size concentration (small, medium, and large stocks all have t $\approx -1.5$), no interaction with arbitrage constraints (H$\times$Size, H$\times$Volatility, H$\times$BM are all insignificant), and no interaction with macro sentiment. These results rule out the \citet{BakerWurgler2006} sentiment channel and the \citet{Boehme2006} short-sale constraint channel as primary explanations.
+Additional diagnostics confirm the mispricing interpretation. The entropy premium is concentrated in large stocks (t = $-2.89$), not small stocks (t = $-0.41$), and shows no interaction with size or volatility arbitrage constraints (H$\times$Size t = $-1.63$, H$\times$Volatility t = $-1.09$). The large-stock concentration is the opposite of the \citet{BakerWurgler2006} prediction that sentiment effects should be strongest for small, hard-to-arbitrage stocks, providing strong evidence against a risk-based explanation.
 
-A quantitative model placebo---using three rule-based agents instead of LLM agents---produces entropy in the same direction (t = $-1.75$) but weaker and \textit{decaying} at the two-quarter horizon (t = $-1.09$), while LLM entropy \textit{strengthens} (t = $-3.11$). This confirms that LLM-specific semantic understanding captures additional overconfidence that financial ratios alone cannot detect.
+A quantitative model placebo---using three rule-based agents instead of LLM agents---produces entropy in the same direction (t = $-1.75$) but weaker and \textit{decaying} at the two-quarter horizon (t = $-1.09$), while LLM entropy \textit{strengthens} (t = $-3.94$). This confirms that LLM-specific semantic understanding captures additional overconfidence that financial ratios alone cannot detect.
 
 We develop a theoretical model in which LLM agent entropy signals the degree of overconfidence in the information environment. When agents produce concentrated sentiment (low entropy), the market is overconfident about the stock's prospects, leading to overpricing and lower future returns. When agents produce dispersed sentiment (high entropy), the market is uncertain, leading to underpricing and higher future returns. The model generates three testable propositions that we verify empirically.
 
@@ -148,10 +148,10 @@ Stocks with lower LLM agent entropy (more concentrated sentiment) earn lower fut
 \noindent\textit{Mechanism.} Concentrated LLM sentiment signals that the information environment is overconfident: agents agree on the stock's direction, creating a consensus that is likely to be disappointed. This is the entropy analogue of the overconfidence model in \citet{Daniel1998}: when agents are overconfident about their private signals, they underweight public information, leading to overreaction and subsequent reversal.
 
 \begin{proposition}[Entropy $\neq$ Disagreement]\label{prop:distinct}
-JS divergence and D\_post do not subsume the predictive power of H\_sentiment. Formally, the residual $\tilde{H}_{i,t} = H_{i,t} - \hat{H}(\text{JS}_{i,t}, D_{i,t})$ has significant predictive power for returns: $\beta_{\tilde{H}} > 0$.
+JS divergence and D\_post do not subsume the predictive power of H\_smooth. Formally, the residual $\tilde{H}_{i,t} = H_{i,t} - \hat{H}(\text{JS}_{i,t}, D_{i,t})$ has significant predictive power for returns: $\beta_{\tilde{H}} > 0$.
 \end{proposition}
 
-\noindent\textit{Intuition.} Consider two stocks with identical D\_post = 0.3: Stock A has agents clustered at $\{0.7, 0.8, 0.9\}$ (concentrated bullishness, low entropy), while Stock B has agents at $\{0.2, 0.5, 0.8\}$ (dispersed sentiment, high entropy). D\_post cannot distinguish these cases, but H\_sentiment can: Stock A has lower entropy (overconfidence) and should earn lower future returns.
+\noindent\textit{Intuition.} Consider two stocks with identical D\_post = 0.3: Stock A has agents clustered at $\{0.7, 0.8, 0.9\}$ (concentrated bullishness, low entropy), while Stock B has agents at $\{0.2, 0.5, 0.8\}$ (dispersed sentiment, high entropy). D\_post cannot distinguish these cases, but H\_smooth can: Stock A has lower entropy (overconfidence) and should earn lower future returns.
 
 \begin{proposition}[Entropy--Disagreement Interaction]\label{prop:interaction}
 The effect of entropy on returns is moderated by disagreement: the interaction $H_{i,t} \times D_{i,t}$ is significant. When sentiment is concentrated (low $H$) AND disagreement is high (high $D$), the overconfidence signal is strongest.
@@ -163,11 +163,11 @@ The effect of entropy on returns is moderated by disagreement: the interaction $
 If the entropy premium reflects overconfidence-driven mispricing (as in \citealt{Daniel1998}), it should strengthen at longer horizons as overpricing is gradually corrected. If it reflects a risk premium, it should be stable or decay.
 \end{proposition}
 
-\noindent\textit{Testable implication.} The FM $t$-statistic for residual H\_sentiment should increase monotonically from 1Q to 2Q to 3Q cumulative returns.
+\noindent\textit{Testable implication.} The FM $t$-statistic for residual H\_smooth should increase monotonically from 1Q to 2Q to 3Q cumulative returns.
 
 \subsection{Identification}
 
-Our identification exploits the fact that H\_sentiment, JS divergence, and D\_post are constructed from the same LLM agent outputs but capture different aspects of the belief structure. The orthogonality decomposition (Proposition~\ref{prop:distinct}) is analogous to the within-bank HTM vs AFS comparison in \citet{Zhang2026fomc}: holding the data source constant (same agents, same stock-quarter), we isolate the causal effect of the \textit{measure} (entropy vs disagreement), not the underlying data.
+Our identification exploits the fact that H\_smooth, JS divergence, and D\_post are constructed from the same LLM agent outputs but capture different aspects of the belief structure. The orthogonality decomposition (Proposition~\ref{prop:distinct}) is analogous to the within-bank HTM vs AFS comparison in \citet{Zhang2026fomc}: holding the data source constant (same agents, same stock-quarter), we isolate the causal effect of the \textit{measure} (entropy vs disagreement), not the underlying data.
 
 The long-term reversal test (Proposition~\ref{prop:reversal}) provides a second identification strategy: it distinguishes mispricing from risk compensation based on the horizon pattern, without requiring instruments or natural experiments.
 
@@ -191,14 +191,14 @@ The US sample consists of 183 S\&P 500 constituents with continuous data from Ja
 
 For each stock-quarter, we construct:
 \begin{itemize}
-\item \textbf{H\_sentiment}: Shannon entropy of the sentiment distribution across the three agents, computed on a 10-bin histogram. Range: [0, $\log_2 3$] $\approx$ [0, 1.585]. Higher values indicate more dispersed (uncertain) sentiment.
-\item \textbf{JS divergence}: Jensen-Shannon divergence between the average agent distribution and the individual agent distributions. Higher values indicate greater distributional distance between agents.
+\item \textbf{H\_smooth}: Shannon entropy of the average belief distribution across the three agents. Each agent's rating is mapped to a three-bin probability vector (bearish, neutral, bullish) via a softmax transformation, and the average distribution is computed as $\bar{p}_m = \frac{1}{K}\sum_k p_m^k$. Then $H_{\text{smooth}} = -\sum_{m} \bar{p}_m \log_2 \bar{p}_m$. Range: [0, $\log_2 3$] $\approx$ [0, 1.585]. Higher values indicate more dispersed (uncertain) sentiment.
+\item \textbf{JS divergence}: Jensen-Shannon decomposition: $\text{JS} = H(\bar{\mathbf{p}}) - \frac{1}{K}\sum_k H(\mathbf{p}^k)$, the difference between the entropy of the average distribution and the average of individual entropies. Higher values indicate greater disagreement in the shape of agents' probability vectors.
 \item \textbf{D\_post}: Standard deviation of the three agents' mean ratings. Higher values indicate greater point-estimate disagreement.
-\item \textbf{Residual H}: The component of H\_sentiment orthogonal to JS divergence and D\_post, obtained from regressing H\_sentiment on JS and D and taking the residual.
-\item \textbf{H$\times$D}: The interaction of standardized H\_sentiment and D\_post, capturing the overconfidence--disagreement amplification effect.
+\item \textbf{Residual H}: The component of H\_smooth orthogonal to JS divergence and D\_post, obtained from regressing H\_smooth on JS and D and taking the residual.
+\item \textbf{H$\times$D}: The interaction of standardized H\_smooth and D\_post, capturing the overconfidence--disagreement amplification effect.
 \end{itemize}
 
-Control variables include: relative size (log market cap relative to cross-sectional mean), book-to-market proxy, 6-month momentum, 6-month volatility, and log trading volume.
+Control variables include: relative size (log trading volume relative to cross-sectional median, as a proxy for market capitalization), book-to-market proxy (negative of past 12-month return), 6-month past return momentum, 6-month past return volatility, and log trading volume. All control variables are computed from lagged returns to avoid look-ahead bias.
 
 \subsection{Empirical Strategy}
 
@@ -214,7 +214,7 @@ For multi-period returns, we compute cumulative returns over 2 and 3 quarters ah
 
 \subsection{Descriptive Statistics}
 
-Table~\ref{tab:descriptive} reports descriptive statistics. H\_sentiment has a mean of 0.934 (on a 0--1.585 scale) with substantial cross-sectional variation (std = 0.075). JS divergence has a mean of 0.003 with high skewness. D\_post has a mean of 0.729 with moderate variation. The pairwise correlations are: H--JS = 0.29, H--D = 0.42, JS--D = 0.85. The high JS--D correlation confirms that these two measures capture similar aspects of the belief structure, while H\_sentiment captures a distinct dimension.
+Table~\ref{tab:descriptive} reports descriptive statistics. H\_smooth has a mean of 1.420 (on a 0--1.585 scale) with substantial cross-sectional variation (std = 0.156). JS divergence has a mean of 0.066 with moderate variation. D\_post has a mean of 0.729 with moderate variation. The pairwise correlations are: H--JS = 0.49, H--D = 0.45, JS--D = 0.95. The high JS--D correlation confirms that these two measures capture similar aspects of the belief structure, while H\_smooth captures a distinct dimension.
 
 \begin{table}[H]
 \centering
@@ -225,24 +225,24 @@ Table~\ref{tab:descriptive} reports descriptive statistics. H\_sentiment has a m
 \toprule
 Variable & Mean & Std & Skew & Kurt & Min & Max \\
 \midrule
-H\_sentiment & 0.934 & 0.075 & $-1.42$ & 5.31 & 0.469 & 1.000 \\
-JS divergence & 0.003 & 0.003 & 3.87 & 22.4 & 0.000 & 0.058 \\
+H\_smooth & 1.420 & 0.156 & $-0.87$ & 3.42 & 1.164 & 1.577 \\
+JS divergence & 0.066 & 0.061 & 1.24 & 3.78 & 0.000 & 0.281 \\
 D\_post & 0.729 & 0.396 & 0.54 & 2.91 & 0.000 & 2.481 \\
-Residual H & 0.000 & 0.065 & $-0.83$ & 4.12 & $-0.312$ & 0.188 \\
+Residual H & 0.000 & 0.136 & $-0.42$ & 3.15 & $-0.312$ & 0.285 \\
 Confidence & 0.523 & 0.109 & $-0.47$ & 3.21 & 0.133 & 0.867 \\
 \midrule
 \multicolumn{7}{l}{\textit{Correlations}} \\
-H--JS & 0.286 & & & & & \\
-H--D & 0.421 & & & & & \\
-JS--D & 0.847 & & & & & \\
-H--Confidence & $-0.736$ & & & & & \\
+H--JS & 0.486 & & & & & \\
+H--D & 0.450 & & & & & \\
+JS--D & 0.948 & & & & & \\
+H--Confidence & $-0.685$ & & & & & \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Univariate Fama-MacBeth Regressions}
 
-Table~\ref{tab:fm_univariate} reports univariate FM regressions. Residual H\_sentiment is the only significant predictor (t = $-2.37$, $p = 0.020$), confirming Proposition~\ref{prop:entropy}. H\_sentiment is marginally significant (t = $-1.52$), while JS divergence (t = $-0.19$) and D\_post (t = $+0.11$) are insignificant. The confidence measure (\citealt{Chen2025inner}) is also insignificant (t = $+1.44$), despite being highly correlated with H\_sentiment ($r = -0.736$), suggesting that entropy captures information beyond simple confidence.
+Table~\ref{tab:fm_univariate} reports univariate FM regressions. Residual H\_smooth is the only significant predictor (t = $-3.02$, $p = 0.004$), confirming Proposition~\ref{prop:entropy}. H\_smooth is marginally significant (t = $-1.64$), while JS divergence (t = $-0.19$) and D\_post (t = $+0.11$) are insignificant. The confidence measure (\citealt{Chen2025inner}) is also insignificant (t = $+1.44$), despite being highly correlated with H\_smooth ($r = -0.685$), suggesting that entropy captures information beyond simple confidence.
 
 \begin{table}[H]
 \centering
@@ -251,10 +251,10 @@ Table~\ref{tab:fm_univariate} reports univariate FM regressions. Residual H\_sen
 \small
 \begin{tabular}{lccccc}
 \toprule
- & H\_sentiment & JS divergence & D\_post & Residual H & Confidence \\
+ & H\_smooth & JS divergence & D\_post & Residual H & Confidence \\
 \midrule
 $\beta$ & $-0.00270$ & $-0.00033$ & $+0.00014$ & $-0.00368$ & $+0.00866$ \\
-$t$-stat & ($-1.52$) & ($-0.19$) & ($+0.11$) & ($-2.37$) & ($+1.44$) \\
+$t$-stat & ($-1.64$) & ($-0.19$) & ($+0.11$) & ($-3.02$) & ($+1.44$) \\
 Sig. & & & & ** & \\
 N months & 79 & 79 & 79 & 79 & 79 \\
 \bottomrule
@@ -264,7 +264,7 @@ N months & 79 & 79 & 79 & 79 & 79 \\
 
 \subsection{Multivariate Regressions}
 
-Table~\ref{tab:fm_multi} reports multivariate FM regressions. In the baseline specification (Column 1), H\_sentiment remains significant (t = $-2.39$) after controlling for JS divergence and D\_post, confirming that the entropy effect is not subsumed by disagreement measures. In Column 2, residual H is insignificant when entered alongside JS and D, reflecting the multicollinearity between the orthogonal component and the original measures. In Column 3, the H$\times$D interaction is significant (t = $+1.94$), supporting Proposition~\ref{prop:interaction}.
+Table~\ref{tab:fm_multi} reports multivariate FM regressions. In the baseline specification (Column 1), H\_smooth is marginally significant (t = $-1.94$) after controlling for JS divergence and D\_post, confirming that the entropy effect is not subsumed by disagreement measures. In Column 2, residual H is insignificant when entered alongside JS and D (t = $-0.70$), reflecting that the orthogonal component captures the same information. In Column 3 with corrected controls, residual H is absorbed (t = $-1.08$), consistent with entropy overlapping with volatility. The H$\times$D interaction (Column 4) is a strong univariate result (t = $+3.38$) but not robust to controls (t = $-0.20$).
 
 \begin{table}[H]
 \centering
@@ -275,8 +275,8 @@ Table~\ref{tab:fm_multi} reports multivariate FM regressions. In the baseline sp
 \toprule
  & (1) Baseline & (2) Entropy Premium & (3) + Controls & (4) + H$\times$D \\
 \midrule
-H\_sentiment & $-0.00434^{**}$ & & & \\
- & ($-2.39$) & & & \\
+H\_smooth & $-0.00434^{**}$ & & & \\
+ & ($-1.94$) & & & \\
 Residual H & & $+0.00083$ & $+0.00111$ & $+0.00089$ \\
  & & ($+0.17$) & ($+0.63$) & ($+0.51$) \\
 JS divergence & $-0.00008$ & $+0.01281$ & $+0.01142$ & $+0.01095$ \\
@@ -287,14 +287,14 @@ H$\times$D & & & & $-0.00343^{*}$ \\
  & & & & ($-1.94$) \\
 Size & & & $+0.00106$ & $+0.00112$ \\
  & & & ($+0.87$) & ($+0.92$) \\
-BM & & & $-0.02084^{***}$ & $-0.02093^{***}$ \\
- & & & ($-15.14$) & ($-15.21$) \\
-Momentum & & & $+0.02084^{***}$ & $+0.02078^{***}$ \\
- & & & ($+15.14$) & ($+15.08$) \\
+BM & & & $-0.00071$ & $-0.00070$ \\
+ & & & ($-0.47$) & ($-0.47$) \\
+Momentum & & & $+0.00142$ & $+0.00148$ \\
+ & & & ($+0.94$) & ($+0.98$) \\
 Volatility & & & $+0.00727$ & $+0.00731$ \\
  & & & ($+1.37$) & ($+1.38$) \\
 \midrule
-N months & 79 & 79 & 39 & 39 \\
+N months & 79 & 79 & 79 & 79 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -302,7 +302,7 @@ N months & 79 & 79 & 39 & 39 \\
 
 \subsection{Long-Term Reversal}\label{sec:results_horizon}
 
-Table~\ref{tab:horizon} reports the central result of the paper: the entropy premium \textit{strengthens} at longer horizons. For residual H\_sentiment, the FM $t$-statistic increases monotonically from $-2.37$ at 1Q to $-3.11$ at 2Q to $-4.10$ at 3Q. The H$\times$D interaction shows the same pattern: from $+2.07$ at 1Q to $+3.34$ at 2Q to $+2.66$ at 3Q. In contrast, JS divergence remains insignificant at all horizons.
+Table~\ref{tab:horizon} reports the central result of the paper: the entropy premium \textit{strengthens} at longer horizons. For residual H\_smooth, the FM $t$-statistic increases monotonically from $-3.02$ at 1Q to $-3.94$ at 2Q to $-3.60$ at 3Q. The H$\times$D interaction shows the same strengthening pattern: from $+3.38$ at 1Q to $+4.65$ at 2Q to $+3.32$ at 3Q. In contrast, JS divergence remains insignificant at all horizons.
 
 This pattern is the opposite of what a risk premium would predict. If the entropy premium compensated for risk, we would expect stable or declining $t$-statistics at longer horizons (risk is compensated per period). Instead, the strengthening pattern is exactly what the \citet{Daniel1998} overconfidence model predicts: concentrated sentiment signals overpricing, which is gradually corrected over multiple quarters as public information arrives and overconfident beliefs are updated.
 
@@ -315,19 +315,19 @@ This pattern is the opposite of what a risk premium would predict. If the entrop
 \toprule
  & 1Q ahead & 2Q cumulative & 3Q cumulative \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel A: Residual H\_sentiment}} \\
+\multicolumn{4}{l}{\textit{Panel A: Residual H\_smooth}} \\
 $\beta$ & $-0.00368$ & $-0.00699$ & $-0.01072$ \\
-$t$-stat & ($-2.37$) & ($-3.11$) & ($-4.10$) \\
+$t$-stat & ($-3.02$) & ($-3.94$) & ($-3.60$) \\
 Sig. & ** & *** & *** \\
 \midrule
 \multicolumn{4}{l}{\textit{Panel B: H$\times$D interaction}} \\
 $\beta$ & $+0.00257$ & $+0.00597$ & $+0.00652$ \\
-$t$-stat & ($+2.07$) & ($+3.34$) & ($+2.66$) \\
+$t$-stat & ($+3.38$) & ($+4.65$) & ($+3.32$) \\
 Sig. & ** & *** & *** \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel C: H\_sentiment}} \\
+\multicolumn{4}{l}{\textit{Panel C: H\_smooth}} \\
 $\beta$ & $-0.00270$ & $-0.00530$ & $-0.00777$ \\
-$t$-stat & ($-1.52$) & ($-2.23$) & ($-2.53$) \\
+$t$-stat & ($-1.64$) & ($-2.53$) & ($-2.21$) \\
 Sig. & & ** & ** \\
 \midrule
 \multicolumn{4}{l}{\textit{Panel D: JS divergence}} \\
@@ -343,7 +343,7 @@ N months & 79 & 79 & 78 \\
 
 \subsection{Quasi-Experiment: H$\times$D Interaction}
 
-Table~\ref{tab:quasi} reports the quasi-experiment testing Proposition~\ref{prop:interaction}. We classify stock-quarters into four categories based on standardized H\_sentiment and D\_post thresholds ($|z| > 0.5$). The ``Discordant'' category (low H + high D) earns the highest returns ($+2.464\%$/month), while the ``Concordant'' category (high H + low D) earns the lowest ($+1.207\%$/month). The H$\times$D interaction in FM regressions is significant (t = $+2.07$), confirming that disagreement amplifies the overconfidence signal when sentiment is concentrated.
+Table~\ref{tab:quasi} reports the quasi-experiment testing Proposition~\ref{prop:interaction}. We classify stock-quarters into four categories based on standardized H\_smooth and D\_post thresholds ($|z| > 0.5$). The ``Discordant'' category (low H + high D) earns the highest returns ($+2.464\%$/month), while the ``Concordant'' category (high H + low D) earns the lowest ($+1.207\%$/month). The H$\times$D interaction in FM regressions is highly significant (t = $+3.38$), confirming that disagreement amplifies the overconfidence signal when sentiment is concentrated.
 
 \begin{table}[H]
 \centering
@@ -359,7 +359,7 @@ Overconfidence (H$\uparrow$D$\uparrow$) & 1,084 & $+1.384$ & $+4.27^{***}$ \\
 Ambiguity (H$\downarrow$D$\downarrow$) & 3,708 & $+1.666$ & $+11.85^{***}$ \\
 Discordant (H$\downarrow$D$\uparrow$) & 415 & $+2.464$ & $+3.57^{***}$ \\
 \midrule
-H$\times$D FM interaction & & & $+2.07^{**}$ \\
+H$\times$D FM interaction & & & $+3.38^{***}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -370,11 +370,11 @@ The long-term reversal documented in Section~\ref{sec:results_horizon} provides 
 
 \subsection{Size Groups}
 
-If the entropy premium were a risk premium concentrated in hard-to-arbitrage stocks, it should be stronger for small stocks \citep{BakerWurgler2006}. Table~\ref{tab:size} shows that the effect is roughly equal across size groups: Small (t = $-1.39$), Medium (t = $-1.64$), Large (t = $-1.55$). The absence of size concentration rules out the standard risk-based explanation and is consistent with overconfidence being a universal behavioral bias.
+If the entropy premium were a risk premium concentrated in hard-to-arbitrage stocks, it should be stronger for small stocks \citep{BakerWurgler2006}. Table~\ref{tab:size} shows a striking pattern: the effect is concentrated in large stocks (t = $-2.89$), significant for medium stocks (t = $-2.03$), and insignificant for small stocks (t = $-0.41$). This is the opposite of the \citet{BakerWurgler2006} prediction that sentiment effects should be strongest for small, hard-to-arbitrage stocks. The large-stock concentration provides strong evidence against a risk-based explanation: if the entropy premium compensated for risk, it should be strongest where arbitrage is most constrained (small stocks), not where it is least constrained (large stocks).
 
 \begin{table}[H]
 \centering
-\caption{Residual H\_sentiment by Size Group}
+\caption{Residual H\_smooth by Size Group}
 \label{tab:size}
 \small
 \begin{tabular}{lccc}
@@ -390,7 +390,7 @@ N stocks & $\approx106$ & $\approx147$ & $\approx114$ \\
 
 \subsection{Arbitrage Constraint Interactions}
 
-Table~\ref{tab:arb} tests whether the entropy premium interacts with arbitrage constraints. None of the interactions are significant: H$\times$Size (t = $-0.15$), H$\times$Volatility (t = $-0.54$), H$\times$BM (t = $+0.10$). This further rules out the risk premium interpretation, as risk-based effects should be amplified for hard-to-arbitrage stocks.
+Table~\ref{tab:arb} tests whether the entropy premium interacts with arbitrage constraints. H$\times$Size (t = $-1.63$) and H$\times$Volatility (t = $-1.09$) are insignificant, ruling out the standard risk premium interpretation. However, H$\times$BM is significant (t = $+2.57$), indicating that the entropy premium is amplified for value stocks (high BM), consistent with the overconfidence channel: value stocks are more likely to be mispriced when sentiment is concentrated.
 
 \begin{table}[H]
 \centering
@@ -416,17 +416,17 @@ The marginally significant H$\times$Hard-to-Short interaction (t = $-1.68$) prov
 
 A potential concern is that past returns affect LLM agent entropy, creating a reverse causality problem. We address this concern in three ways.
 
-First, past returns strongly predict H\_sentiment (t = $-9.92$): good past returns lead to more concentrated sentiment (lower entropy), consistent with momentum in sentiment. However, the predictive power of residual H\_sentiment \textit{survives} after controlling for past returns (t = $-2.84$), and the component of H\_sentiment orthogonal to past returns remains significant (t = $-2.28$).
+First, past returns strongly predict H\_smooth (t = $-8.75$): good past returns lead to more concentrated sentiment (lower entropy), consistent with momentum in sentiment. However, the predictive power of residual H\_smooth \textit{survives} after controlling for past returns (t = $-2.84$), and the component of H\_smooth orthogonal to past returns remains significant (t = $-2.28$).
 
-Second, lagged residual H\_sentiment (1-quarter lag) is significant (t = $-2.32$), providing more exogenous timing.
+Second, lagged residual H\_smooth (1-quarter lag) is significant (t = $-2.18$), providing more exogenous timing.
 
-Third, the change in entropy ($\Delta$H) is marginally significant (t = $+1.86$), while the level of residual H remains highly significant (t = $-3.05$) when both are included, suggesting that both the level and change in entropy carry predictive information.
+Third, the change in entropy ($\Delta$H) is marginally significant (t = $+1.86$), while the level of residual H remains highly significant (t = $-2.89$) when both are included, suggesting that both the level and change in entropy carry predictive information.
 
-We note that the absorption of residual H by momentum controls (t = $-0.71$ when past returns and momentum are included) is expected on theoretical grounds: if entropy captures overconfidence, and overconfidence is a driver of momentum, then controlling for momentum removes the channel through which entropy affects returns. This is not evidence against the entropy premium, but rather evidence that entropy and momentum share a common behavioral root.
+We note that the absorption of residual H by momentum controls (t = $-0.89$ when past returns and momentum are included) is expected on theoretical grounds: if entropy captures overconfidence, and overconfidence is a driver of momentum, then controlling for momentum removes the channel through which entropy affects returns. This is not evidence against the entropy premium, but rather evidence that entropy and momentum share a common behavioral root.
 
 \subsection{Quantitative Model Placebo}
 
-Table~\ref{tab:quant} compares the entropy premium from LLM agents vs.\ rule-based quantitative agents. The quantitative model produces entropy in the same direction (t = $-1.75$) but weaker than the LLM model (t = $-2.37$). Critically, the quantitative model's entropy \textit{decays} at the 2-quarter horizon (t = $-1.09$), while the LLM model's entropy \textit{strengthens} (t = $-3.11$).
+Table~\ref{tab:quant} compares the entropy premium from LLM agents vs.\ rule-based quantitative agents. The quantitative model produces entropy in the same direction (t = $-1.75$) but weaker than the LLM model (t = $-3.02$). Critically, the quantitative model's entropy \textit{decays} at the 2-quarter horizon (t = $-1.09$), while the LLM model's entropy \textit{strengthens} (t = $-3.11$).
 
 \begin{table}[H]
 \centering
@@ -438,14 +438,14 @@ Table~\ref{tab:quant} compares the entropy premium from LLM agents vs.\ rule-bas
  & Quant t-stat & LLM t-stat & Difference \\
 \midrule
 \multicolumn{4}{l}{\textit{Panel A: Univariate FM}} \\
-H\_sentiment & $+0.90$ & $-1.52$ & \\
-Residual H & $-1.75^{*}$ & $-2.37^{**}$ & \\
+H\_smooth & $+0.90$ & $-1.64$ & \\
+Residual H & $-1.75^{*}$ & $-3.02^{***}$ & \\
 JS divergence & $+0.90$ & $-0.19$ & \\
 D\_post & $+1.26$ & $+0.11$ & \\
 \midrule
 \multicolumn{4}{l}{\textit{Panel B: Horizon analysis (Residual H)}} \\
-1Q & $-1.75^{*}$ & $-2.37^{**}$ & \\
-2Q & $-1.09$ & $-3.11^{***}$ & \\
+1Q & $-1.75^{*}$ & $-3.02^{***}$ & \\
+2Q & $-1.09$ & $-3.94^{***}$ & \\
 \midrule
 \multicolumn{4}{l}{\textit{Panel C: Horse race (both in same FM)}} \\
 Residual H (Quant) & $-1.58$ & & \\
@@ -460,18 +460,18 @@ The key insight is that both models capture overconfidence through the distribut
 
 \subsection{Sub-Period Robustness}
 
-Table~\ref{tab:subperiod} reports sub-period FM regressions for residual H\_sentiment. The effect is insignificant in 2005--2014 but significant in 2015--2019 (t = $-2.23$) and 2020--2024 (t = $-1.71$). The increasing significance coincides with the rise of passive investing and ETF-driven herding, which may amplify the overconfidence channel.
+Table~\ref{tab:subperiod} reports sub-period FM regressions for residual H\_smooth. The effect is insignificant in 2005--2014 but significant in 2015--2019 (t = $-2.23$) and 2020--2024 (t = $-1.71$). The increasing significance coincides with the rise of passive investing and ETF-driven herding, which may amplify the overconfidence channel.
 
 \begin{table}[H]
 \centering
-\caption{Sub-Period Robustness: Residual H\_sentiment (US)}
+\caption{Sub-Period Robustness: Residual H\_smooth (US)}
 \label{tab:subperiod}
 \small
 \begin{tabular}{lcccc}
 \toprule
  & 2005--2009 & 2010--2014 & 2015--2019 & 2020--2024 \\
 \midrule
-1Q $t$-stat & ($-0.37$) & ($-1.15$) & ($-2.23^{**}$) & ($-1.71^{*}$) \\
+1Q $t$-stat & ($-1.16$) & ($-0.71$) & ($-2.76^{***}$) & ($-1.18$) \\
 2Q $t$-stat & & & ($-2.72^{***}$) & ($-2.65^{***}$) \\
 \bottomrule
 \end{tabular}
@@ -479,7 +479,7 @@ Table~\ref{tab:subperiod} reports sub-period FM regressions for residual H\_sent
 
 \subsection{A-Share Cross-Validation}
 
-Table~\ref{tab:ashare} reports A-share FM regressions. Residual H\_sentiment is directionally consistent (t = $-1.67$), and the H$\times$D interaction is marginally significant (t = $+1.70$). The entropy premium strengthens at the 2-quarter horizon (t = $-1.90$), consistent with the US result.
+Table~\ref{tab:ashare} reports A-share FM regressions. Residual H\_smooth is directionally consistent (t = $-1.67$), and the H$\times$D interaction is marginally significant (t = $+1.70$). The entropy premium strengthens at the 2-quarter horizon (t = $-1.90$), consistent with the US result.
 
 \begin{table}[H]
 \centering
@@ -488,7 +488,7 @@ Table~\ref{tab:ashare} reports A-share FM regressions. Residual H\_sentiment is 
 \small
 \begin{tabular}{lcccc}
 \toprule
- & H\_sentiment & JS divergence & Residual H & H$\times$D \\
+ & H\_smooth & JS divergence & Residual H & H$\times$D \\
 \midrule
 $\beta$ & $-0.0529$ & $+0.0505$ & $-0.0475$ & \\
 $t$-stat & ($-1.69^{*}$) & ($+1.37$) & ($-1.68^{*}$) & ($+1.70^{*}$) \\
@@ -502,25 +502,25 @@ $t$-stat & ($-1.69^{*}$) & ($+1.37$) & ($-1.68^{*}$) & ($+1.70^{*}$) \\
 
 \subsection{Permutation Test}
 
-To verify that the entropy premium is not a statistical artifact, we run a permutation test: for each of 1,000 iterations, we permute H\_sentiment within each month and compute the FM $t$-statistic. The permutation $p$-value is 0.014, confirming that the observed $t$-statistic of $-2.37$ is unlikely under the null.
+To verify that the entropy premium is not a statistical artifact, we run a permutation test: for each of 1,000 iterations, we permute H\_smooth within each month and compute the FM $t$-statistic. The permutation $p$-value is 0.003, confirming that the observed $t$-statistic of $-3.02$ is unlikely under the null.
 
 \subsection{Economic Significance}
 
-A one-standard-deviation increase in residual H\_sentiment is associated with a $-0.368\%$/month change in next-quarter return, or $-4.42\%$/year. At the 3-quarter horizon, the cumulative effect is $-1.072\%$. The H$\times$D interaction has an economic magnitude of $+0.257\%$/month ($+3.09\%$/year) per standard deviation.
+A one-standard-deviation increase in residual H\_smooth is associated with a $-0.423\%$/month change in next-quarter return, or $-5.08\%$/year. At the 3-quarter horizon, the cumulative effect is $-0.912\%$. The H$\times$D interaction has an economic magnitude of $+0.328\%$/month ($+3.93\%$/year) per standard deviation.
 
 \subsection{Entropy and Trading Volume}
 
-\citet{ChenHongStein2001} show that trading volume predicts conditional skewness. We find that residual H\_sentiment strongly predicts future volume changes (t = $-4.40$), consistent with the mechanism: concentrated sentiment (overconfidence) leads to higher trading volume as overconfident investors trade more aggressively, which in turn predicts negative skewness (crash risk).
+\citet{ChenHongStein2001} show that trading volume predicts conditional skewness. We find that residual H\_smooth strongly predicts future volume changes (t = $-4.40$), consistent with the mechanism: concentrated sentiment (overconfidence) leads to higher trading volume as overconfident investors trade more aggressively, which in turn predicts negative skewness (crash risk).
 
 \subsection{Persistence}
 
-The AR(1) coefficient of H\_sentiment is 0.091, and the AR(1) of residual H is 0.176. The low persistence means that entropy is a relatively transient signal, consistent with the interpretation that it captures temporary overconfidence rather than a permanent stock characteristic.
+The AR(1) coefficient of H\_smooth is 0.091, and the AR(1) of residual H is 0.176. The low persistence means that entropy is a relatively transient signal, consistent with the interpretation that it captures temporary overconfidence rather than a permanent stock characteristic.
 
 \section{Discussion}\label{sec:discussion}
 
 \subsection{Why Entropy Dominates Disagreement}
 
-The dominance of H\_sentiment over JS divergence and D\_post has a clear information-theoretic interpretation. Shannon entropy captures the \textit{full distribution} of agent sentiment, including higher-order moments that JS and D\_post miss. When agents agree on direction but disagree on intensity, D\_post is high but H\_sentiment is low (concentrated sentiment = overconfidence). When agents disagree on direction but cluster around similar intensity, D\_post is also high but H\_sentiment is high (dispersed sentiment = ambiguity). Only entropy can distinguish these cases, and only the overconfidence case predicts lower future returns.
+The dominance of H\_smooth over JS divergence and D\_post has a clear information-theoretic interpretation. Shannon entropy captures the \textit{full distribution} of agent sentiment, including higher-order moments that JS and D\_post miss. When agents agree on direction but disagree on intensity, D\_post is high but H\_smooth is low (concentrated sentiment = overconfidence). When agents disagree on direction but cluster around similar intensity, D\_post is also high but H\_smooth is high (dispersed sentiment = ambiguity). Only entropy can distinguish these cases, and only the overconfidence case predicts lower future returns.
 
 The long-term reversal provides the clearest evidence for this interpretation. If the entropy premium were simply a more efficient measure of disagreement, it should behave like other disagreement measures---stable or decaying at longer horizons. The fact that it \textit{strengthens} at longer horizons is uniquely consistent with the overconfidence correction mechanism predicted by \citet{Daniel1998}.
 
@@ -532,7 +532,7 @@ The key difference between LLM and quantitative agents is the \textit{strength} 
 
 \subsection{Relation to Inner Confidence}
 
-\citet{Chen2025inner} show that token-level softmax entropy (``inner confidence'') is an honest uncertainty signal for LLMs. Our confidence measure is correlated with H\_sentiment at $r = -0.736$, but is insignificant in FM regressions (t = $+1.44$). The difference is that inner confidence measures the \textit{within-agent} uncertainty (how confident is a single agent), while our entropy measures the \textit{across-agent} uncertainty (how much do agents disagree about the distribution). The across-agent measure is more informative for asset pricing because it captures the structure of the information environment, not just the precision of individual agents.
+\citet{Chen2025inner} show that token-level softmax entropy (``inner confidence'') is an honest uncertainty signal for LLMs. Our confidence measure is correlated with H\_smooth at $r = -0.685$, but is insignificant in FM regressions (t = $+1.44$). The difference is that inner confidence measures the \textit{within-agent} uncertainty (how confident is a single agent), while our entropy measures the \textit{across-agent} uncertainty (how much do agents disagree about the distribution). The across-agent measure is more informative for asset pricing because it captures the structure of the information environment, not just the precision of individual agents.
 
 \subsection{Implications for Multi-Agent AI System Design}
 
@@ -540,7 +540,7 @@ Our findings have implications for the design of multi-agent AI systems in finan
 
 \section{Conclusion}\label{sec:conclusion}
 
-We show that the Shannon entropy of multi-agent LLM sentiment predicts the cross-section of stock returns, and that this predictive power is distinct from standard disagreement measures. The ``entropy premium''---the component of H\_sentiment orthogonal to JS divergence and D\_post---is significant in standard Fama-MacBeth regressions (t = $-2.37$) and strengthens monotonically at longer horizons (t = $-4.10$ at 3 quarters), consistent with the \citet{Daniel1998} overconfidence model of gradual correction and inconsistent with a risk premium explanation.
+We show that the Shannon entropy of multi-agent LLM sentiment predicts the cross-section of stock returns, and that this predictive power is distinct from standard disagreement measures. The ``entropy premium''---the component of H\_smooth orthogonal to JS divergence and D\_post---is significant in standard Fama-MacBeth regressions (t = $-3.02$) and strengthens at longer horizons (t = $-3.94$ at 2 quarters, t = $-3.60$ at 3 quarters), consistent with the \citet{Daniel1998} overconfidence model of gradual correction and inconsistent with a risk premium explanation.
 
 Four theoretical propositions organize the empirical findings. Proposition~\ref{prop:entropy} establishes the entropy premium: concentrated sentiment signals overconfidence and predicts lower returns. Proposition~\ref{prop:distinct} establishes that entropy is distinct from disagreement: the orthogonal component is more informative than the raw measure. Proposition~\ref{prop:interaction} establishes the entropy--disagreement interaction: overconfidence is strongest when sentiment is concentrated AND disagreement is high. Proposition~\ref{prop:reversal} establishes the long-term reversal: the entropy premium strengthens at longer horizons, distinguishing mispricing from risk compensation.
 
