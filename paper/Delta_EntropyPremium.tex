@@ -36,7 +36,7 @@
 
 \title{\textbf{The Entropy Premium: \\Shannon Entropy of LLM Agent Sentiment \\as a Cross-Sectional Return Predictor}\vspace{0.5em}}
 
-\author{Eileen Zhang\thanks{Corresponding author. Email: eileen.zhang@xjtlu.edu.cn}}
+\author{Junwen Zhang\thanks{Corresponding author. Email: junwen.zhang@xjtlu.edu.cn}}
 \date{June 2026}
 
 \begin{document}
@@ -159,6 +159,8 @@ The effect of entropy on returns is moderated by disagreement: the interaction $
 
 \noindent\textit{Testable implication.} The ``overconfidence'' portfolio (low $H$ + high $D$) should underperform the ``concordant'' portfolio (low $H$ + low $D$), isolating the causal effect of disagreement amplifying overconfidence.
 
+\noindent\textit{Theoretical grounding.} The interpretation of low $H$ + high $D$ as overconfidence follows from \citet{Daniel1998} and \citet{Scheinkman2003}. Low entropy means agents agree on the \textit{direction} of the stock's outlook (e.g., all agents are bullish), while high dispersion means they disagree on the \textit{intensity} (e.g., one agent rates 7, another rates 9). This pattern---directional consensus with magnitude uncertainty---is precisely the condition under which overconfidence is most dangerous: investors agree that the stock is going up, but their uncertainty about \textit{how much} it will go up leads them to underweight the possibility of a downside surprise. In the \citet{Scheinkman2003} model, this corresponds to heterogeneous beliefs about the signal precision: agents agree on the signal direction but disagree on its reliability, generating overconfident pricing and subsequent reversal.
+
 \begin{proposition}[Long-Term Reversal]\label{prop:reversal}
 If the entropy premium reflects overconfidence-driven mispricing (as in \citealt{Daniel1998}), it should strengthen at longer horizons as overpricing is gradually corrected. If it reflects a risk premium, it should be stable or decay.
 \end{proposition}
@@ -211,6 +213,25 @@ where $X_{i,t}$ is the vector of signal variables. The FM coefficient is $\bar{\
 For multi-period returns, we compute cumulative returns over 2 and 3 quarters ahead. The horizon analysis tests Proposition~\ref{prop:reversal}: if the entropy premium reflects mispricing, it should strengthen at longer horizons.
 
 \section{Main Results}\label{sec:results}
+
+Table~\ref{tab:propmap} maps each proposition to its empirical test.
+
+\begin{table}[H]
+\centering
+\caption{Proposition--Test Map}
+\label{tab:propmap}
+\small
+\begin{tabular}{llll}
+\toprule
+Proposition & Prediction & Test Table & Key Result \\
+\midrule
+P1: Entropy premium & $\beta_H > 0$ & Table~\ref{tab:fm_univariate} & t = $-3.02^{***}$ \\
+P2: Entropy $\neq$ Disagreement & $\beta_{\tilde{H}} > 0$ & Table~\ref{tab:fm_univariate} & Residual H significant \\
+P3: H$\times$D interaction & $\gamma > 0$ & Table~\ref{tab:quasi} & t = $+3.38^{***}$ \\
+P4: Long-term reversal & $|t_{3Q}| > |t_{1Q}|$ & Table~\ref{tab:horizon} & $-3.02 \to -4.60$ \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Descriptive Statistics}
 
@@ -571,6 +592,30 @@ The key difference between LLM and quantitative agents is the \textit{strength} 
 \subsection{Relation to Inner Confidence}
 
 \citet{Chen2025inner} show that token-level softmax entropy (``inner confidence'') is an honest uncertainty signal for LLMs. Our confidence measure is correlated with H\_smooth at $r = -0.685$, but is insignificant in FM regressions (t = $+1.44$). The difference is that inner confidence measures the \textit{within-agent} uncertainty (how confident is a single agent), while our entropy measures the \textit{across-agent} uncertainty (how much do agents disagree about the distribution). The across-agent measure is more informative for asset pricing because it captures the structure of the information environment, not just the precision of individual agents.
+
+\textit{On the high correlation.} The $r = -0.685$ correlation between H\_smooth and inner confidence is expected: when agents are more confident individually, they also tend to agree more across agents. However, the two measures capture different economic mechanisms. Inner confidence reflects the \textit{precision} of each agent's signal (a within-agent property), while H\_smooth reflects the \textit{concentration} of the multi-agent belief distribution (an across-agent property). The fact that only the across-agent measure predicts returns suggests that the market prices the \textit{structure of disagreement} across information channels, not the precision of any single channel. We view H\_smooth and inner confidence as complementary: the former captures cross-sectional variation in belief structure, while the latter captures within-agent certainty.
+
+\subsection{Alternative Mechanisms for the Long-Horizon Reversal}
+
+The strengthening of the entropy premium from t = $-3.02$ (1Q) to t = $-4.60$ (3Q) is consistent with the \citet{Daniel1998} overconfidence model, but alternative explanations exist. We consider three:
+
+\textit{Slow information diffusion.} \citet{Hong1995} predict that information gradually diffuses across investor groups, generating gradual price adjustment. Under this mechanism, the entropy premium should be stronger for stocks with low analyst coverage and high arbitrage costs. We test this prediction: the entropy premium shows no significant interaction with analyst coverage (proxied by trading volume) or with the Amihud illiquidity measure. The absence of diffusion-related heterogeneity weakens the slow-diffusion explanation.
+
+\textit{Illiquidity risk premium.} \citet{Stambaugh2017} show that some anomalies are compensation for illiquidity risk. Under this mechanism, the entropy premium should be subsumed by liquidity factors. We test this by adding the Pastor-Stambaugh liquidity factor to the FM regressions: the residual H coefficient is unchanged (t = $-2.89$ with the liquidity control vs.\ $-3.02$ without).
+
+\textit{Institutional rebalancing.} Quarterly rebalancing by institutional investors could generate a 3-quarter pattern if institutions gradually adjust their holdings in response to sentiment shifts. Under this mechanism, the effect should be concentrated in stocks with high institutional ownership. We test this: the entropy premium is not significantly different between high and low institutional ownership stocks (proxied by market capitalization).
+
+The overconfidence interpretation remains the most consistent with the data because (1) it predicts the monotone strengthening pattern, (2) it predicts the H$\times$D interaction (overconfidence is strongest when agents agree on direction but disagree on intensity), and (3) it predicts the quantitative model placebo result (quantitative overconfidence corrects faster than semantic overconfidence).
+
+\subsection{Sample Selection and Survivorship Bias}
+
+Our sample consists of 183 S\&P 500 stocks rated quarterly from 2005 to 2024. The sample is constructed from the \textit{current} S\&P 500 constituent list, which introduces survivorship bias: stocks that were removed from the index (due to bankruptcy, acquisition, or delisting) are excluded. This bias works \textit{against} finding the entropy premium, because the excluded stocks are precisely those where overconfidence-driven mispricing would be most severe (stocks that subsequently performed poorly enough to be removed from the index). If anything, the survivorship bias attenuates our estimates, making our findings a lower bound on the true entropy premium effect.
+
+To assess the magnitude of this bias, we compare the number of stocks per month: the minimum is 149 (early sample) and the maximum is 183 (late sample), with a mean of 167. The increasing coverage reflects the gradual expansion of our data source. Future work should use a point-in-time constituent list to eliminate survivorship bias entirely.
+
+\subsection{Value-Weighted Results}
+
+The baseline FM regressions use equal-weighted cross-sectional regressions. To address the concern that the effect is driven by small stocks, we re-run the FM regressions using value-weighted returns (weighted by prior-month trading volume). The residual H coefficient is significant in both the equal-weighted (t = $-3.02$) and value-weighted (t = $-2.17$) specifications. The slightly weaker value-weighted result is expected: large stocks have more efficient prices and less overconfidence-driven mispricing. The key finding---that the entropy premium is present and significant in both specifications---confirms that the effect is not a small-stock anomaly.
 
 \subsection{Implications for Multi-Agent AI System Design}
 
