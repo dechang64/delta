@@ -13,6 +13,7 @@ Streamlit Cloud compatible. No heavy ML dependencies required.
 import streamlit as st
 import numpy as np
 import json
+import plotly.graph_objects as go
 from pathlib import Path
 
 # ── Page Config ──
@@ -26,8 +27,8 @@ st.set_page_config(
 # ── Custom CSS ──
 st.markdown("""
 <style>
-    .main-header { font-size: 2.2rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.3rem; }
-    .sub-header { font-size: 1.1rem; color: #94a3b8; margin-bottom: 1.5rem; }
+    .main-header { font-size: 2.2rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.3rem; }
+    .sub-header { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 1.5rem; }
     .metric-card {
         background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
         border-radius: 12px; padding: 1.2rem; margin: 0.5rem 0;
@@ -36,12 +37,12 @@ st.markdown("""
     .metric-value { font-size: 2rem; font-weight: 700; color: #38bdf8; }
     .metric-label { font-size: 0.85rem; color: #94a3b8; margin-top: 0.3rem; }
     .finding-box {
-        padding: 1rem; background: #f0fdf4; border-radius: 8px;
-        border: 1px solid #bbf7d0; margin: 1rem 0;
+        padding: 1rem; background: #1e3a5f; border-radius: 8px;
+        border: 1px solid #2563eb; margin: 1rem 0; color: #e2e8f0;
     }
     .warning-box {
-        padding: 1rem; background: #fef3c7; border-radius: 8px;
-        border: 1px solid #fde68a; margin: 1rem 0;
+        padding: 1rem; background: #422006; border-radius: 8px;
+        border: 1px solid #d97706; margin: 1rem 0; color: #fef3c7;
     }
     .agent-card {
         background: #1e293b; border-radius: 10px; padding: 1rem;
@@ -410,11 +411,11 @@ elif page == "🎮 Entropy Demo":
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        s = st.slider("🟦 Sentiment Agent", 1, 10, 7, key="sent")
+        s_rat = st.slider("🟦 Sentiment Agent", 1, 10, 7, key="sent")
     with col2:
-        t = st.slider("🟩 Technical Agent", 1, 10, 5, key="tech")
+        t_rat = st.slider("🟩 Technical Agent", 1, 10, 5, key="tech")
     with col3:
-        f = st.slider("🟨 Fundamental Agent", 1, 10, 3, key="fund")
+        f_rat = st.slider("🟨 Fundamental Agent", 1, 10, 3, key="fund")
 
     # Compute
     def rating_to_probs(rating):
@@ -424,9 +425,9 @@ elif page == "🎮 Entropy Demo":
         p_pos = np.exp(x) / (np.exp(-x) + 1 + np.exp(x))
         return np.array([p_neg, p_neu, p_pos])
 
-    sp = rating_to_probs(s)
-    tp = rating_to_probs(t)
-    fp = rating_to_probs(f)
+    sp = rating_to_probs(s_rat)
+    tp = rating_to_probs(t_rat)
+    fp = rating_to_probs(f_rat)
     avg_p = (sp + tp + fp) / 3
 
     h_smooth = -np.sum(avg_p * np.log2(avg_p + 1e-10))
@@ -496,8 +497,6 @@ elif page == "🎮 Entropy Demo":
     # Probability distributions visualization
     st.markdown("---")
     st.markdown("### 📊 Agent Probability Distributions")
-
-    import plotly.graph_objects as go
 
     categories = ["Negative", "Neutral", "Positive"]
     fig = go.Figure()
