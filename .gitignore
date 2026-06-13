@@ -18,3 +18,13 @@ __pycache__/
 
 # OS files
 .DS_Store
+
+# Paper files (shown via Streamlit dashboard)
+*.docx
+*.tex
+*.pdf
+*.aux
+*.bbl
+*.blg
+*.out
+
