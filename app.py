@@ -435,7 +435,7 @@ elif page == "🎮 Entropy Demo":
     h_tp = -np.sum(tp * np.log2(tp + 1e-10))
     h_fp = -np.sum(fp * np.log2(fp + 1e-10))
     js = h_smooth - np.mean([h_sp, h_tp, h_fp])
-    d_post = np.std([s, t, f])
+    d_post = np.std([s_rat, t_rat, f_rat])
 
     # Display metrics
     col1, col2, col3 = st.columns(3)
