@@ -5,7 +5,7 @@ Delta Lab — Disagreement-Preserving Multi-Agent Collaboration
 Interactive dashboard for the Delta project:
 Agent Confidence, Entropy, and Cross-Sectional Stock Return Predictability
 
-Dechang Xu (Soochow University) · Junwen Zhang (XJTLU)
+Junwen Zhang (Xi'an Jiaotong-Liverpool University)
 
 Streamlit Cloud compatible. No heavy ML dependencies required.
 """
@@ -87,7 +87,7 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("""
 **Paper**: Delta: Disagreement-Preserving Multi-Agent Collaboration
 
-**Authors**: Dechang Xu · Junwen Zhang
+**Author**: Junwen Zhang
 
 **JEL**: G12, G14, G41, C45, C63
 """)
@@ -543,18 +543,17 @@ elif page == "ℹ️ About":
 
     ---
 
-    **Authors**
-    - **Dechang Xu** — Soochow University
+    **Author**
     - **Junwen Zhang** — Xi'an Jiaotong-Liverpool University
 
     **Code Repository**: [github.com/dechang64/delta](https://github.com/dechang64/delta)
 
     **Citation**
     ```bibtex
-    @article{xu2026delta,
+    @article{zhang2026delta,
       title={Delta: Disagreement-Preserving Multi-Agent Collaboration},
       subtitle={Agent Confidence, Entropy, and Cross-Sectional Stock Return Predictability},
-      author={Xu, Dechang and Zhang, Junwen},
+      author={Zhang, Junwen},
       year={2026}
     }
     ```

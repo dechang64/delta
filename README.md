@@ -4,7 +4,7 @@ Code and data for the paper:
 
 **Delta: Disagreement-Preserving Multi-Agent Collaboration — Agent Confidence, Entropy, and Cross-Sectional Stock Return Predictability**
 
-Dechang Xu (Soochow University) · Junwen Zhang (Xi'an Jiaotong-Liverpool University)
+Junwen Zhang (Xi'an Jiaotong-Liverpool University)
 
 ## Paper
 
@@ -27,10 +27,10 @@ Dechang Xu (Soochow University) · Junwen Zhang (Xi'an Jiaotong-Liverpool Univer
 ## Citation
 
 ```bibtex
-@article{xu2026delta,
+@article{zhang2026delta,
   title={Delta: Disagreement-Preserving Multi-Agent Collaboration},
   subtitle={Agent Confidence, Entropy, and Cross-Sectional Stock Return Predictability},
-  author={Xu, Dechang and Zhang, Junwen},
+  author={Zhang, Junwen},
   year={2026}
 }
 ```
