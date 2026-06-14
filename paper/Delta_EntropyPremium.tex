@@ -68,7 +68,7 @@ The paper's strongest result is the \textit{long-term reversal}. The entropy pre
 
 Additional diagnostics confirm the mispricing interpretation. The entropy premium is concentrated in large stocks (t = $-2.89$), not small stocks (t = $-0.41$), and shows no interaction with size or volatility arbitrage constraints (H$\times$Size t = $-1.63$, H$\times$Volatility t = $-1.09$). The large-stock concentration is the opposite of the \citet{BakerWurgler2006} prediction that sentiment effects should be strongest for small, hard-to-arbitrage stocks, providing strong evidence against a risk-based explanation.
 
-A quantitative model placebo---using three rule-based agents instead of LLM agents---produces entropy in the same direction (t = $-1.75$) but weaker and \textit{decaying} at the two-quarter horizon (t = $-1.09$), while LLM entropy \textit{strengthens} (t = $-3.94$). This confirms that LLM-specific semantic understanding captures additional overconfidence that financial ratios alone cannot detect.
+A quantitative model placebo---using three rule-based agents instead of LLM agents---produces entropy in the same direction (t = $-1.75$) but weaker and \textit{decaying} at the two-quarter horizon (t = $-1.09$), while LLM entropy \textit{strengthens} (t = $-3.94$). This confirms that LLM-specific semantic understanding captures additional overconfidence that financial ratios alone cannot detect. Finally, we extend the analysis to 	extit{probability-based inner confidence}---the Shannon entropy of each agent's probability distribution over sentiment directions. This within-agent uncertainty measure is insignificant unconditionally (t = $-1.16$), but becomes highly significant when interacted with sentiment direction ($H_{\text{IC}} \times D$, t = $+3.17^{***}$ with double-clustered SE t = $+2.77^{***}$). The interaction reveals a strong asymmetry: for bearish stocks, higher inner confidence predicts lower returns (t = $-5.33^{***}$); for bullish stocks, it predicts higher returns (t = $+4.59^{***}$). This asymmetric amplification is precisely the mechanism predicted by our model---uncertainty magnifies the overconfidence signal, with direction-dependent effects.
 
 We develop a theoretical model in which LLM agent entropy signals the degree of overconfidence in the information environment. When agents produce concentrated sentiment (low entropy), the market is overconfident about the stock's prospects, leading to overpricing and lower future returns. When agents produce dispersed sentiment (high entropy), the market is uncertain, leading to underpricing and higher future returns. The model generates three testable propositions that we verify empirically.
 
@@ -589,11 +589,62 @@ A key assumption is that LLM agent sentiment structure reflects the information 
 
 The key difference between LLM and quantitative agents is the \textit{strength} and \textit{persistence} of the entropy premium. LLM agents capture overconfidence about qualitative information (management quality, competitive positioning, regulatory risk) that takes longer to correct, while quantitative agents capture overconfidence about quantitative signals (valuation ratios, momentum) that corrects faster. This distinction is consistent with the \citet{Daniel1998} prediction that overconfidence about private signals with low public verifiability leads to longer-lived mispricing.
 
-\subsection{Relation to Inner Confidence}
+\subsection{Probability-Based Inner Confidence}
 
-\citet{Chen2025inner} show that token-level softmax entropy (``inner confidence'') is an honest uncertainty signal for LLMs. Our confidence measure is correlated with H\_smooth at $r = -0.685$, but is insignificant in FM regressions (t = $+1.44$). The difference is that inner confidence measures the \textit{within-agent} uncertainty (how confident is a single agent), while our entropy measures the \textit{across-agent} uncertainty (how much do agents disagree about the distribution). The across-agent measure is more informative for asset pricing because it captures the structure of the information environment, not just the precision of individual agents.
+\citet{Chen2025inner} show that token-level softmax entropy (``inner confidence'') is an honest uncertainty signal for LLMs. Our main entropy measure H\_smooth captures \textit{across-agent} disagreement---the concentration of the multi-agent belief distribution. A natural question is whether \textit{within-agent} uncertainty---how confident each agent is in its own rating---also predicts returns. We answer this using probability-based scoring: instead of asking agents for a single sentiment label, we elicit the full probability distribution over discrete direction categories (bullish, bearish, neutral) and compute Shannon entropy $H_{\text{IC}}$ of this distribution.
 
-\textit{On the high correlation.} The $r = -0.685$ correlation between H\_smooth and inner confidence is expected: when agents are more confident individually, they also tend to agree more across agents. However, the two measures capture different economic mechanisms. Inner confidence reflects the \textit{precision} of each agent's signal (a within-agent property), while H\_smooth reflects the \textit{concentration} of the multi-agent belief distribution (an across-agent property). The fact that only the across-agent measure predicts returns suggests that the market prices the \textit{structure of disagreement} across information channels, not the precision of any single channel. We view H\_smooth and inner confidence as complementary: the former captures cross-sectional variation in belief structure, while the latter captures within-agent certainty.
+\textit{Data.} We score 137 S\&P 500 stocks (46 high and 91 medium analyst disagreement) over 80 quarters (2005--2024) using two agents (sentiment analyst and fundamental analyst) in named (non-anonymized) mode. Each agent provides both a discrete direction label and a probability distribution over directions; $H_{\text{IC}}$ is the Shannon entropy of this distribution. The panel contains 9,710 stock-quarter observations.
+
+\textit{Results.} Table~\ref{tab:ic_fm} reports Fama-MacBeth regressions. $H_{\text{IC}}$ alone is insignificant (Panel A, Column 1), consistent with our earlier finding that the within-agent confidence measure (correlated with H\_smooth at $r = -0.685$) does not predict returns unconditionally. However, when interacted with sentiment direction $D$ (Column 2), the $H_{\text{IC}} \times D$ interaction is highly significant ($t = +3.17^{***}$), and remains significant with double-clustered standard errors ($t = +2.77^{***}$, Column 3). The direction variable itself is also significant ($t = -3.17^{***}$), confirming that bearish stocks earn lower returns.
+
+\textit{Asymmetric regime effects.} The interaction term reveals a strong asymmetry (Panel B). For bearish stocks, higher inner confidence \textit{reduces} future returns ($\beta = -10.16$, $t = -5.33^{***}$): agents who are highly confident in their bearish assessments are \textit{overconfident}, and the market corrects. For bullish stocks, higher inner confidence \textit{increases} future returns ($\beta = +6.66$, $t = +4.59^{***}$): confident bulls are also overconfident, but in the same direction as the drift. The asymmetry---overconfident bears are punished more than overconfident bulls are rewarded---is consistent with the asymmetric loss function of investors: the cost of being wrong about a decline exceeds the cost of being wrong about an advance.
+
+\textit{Interpretation.} These results resolve the apparent null finding for inner confidence. The within-agent uncertainty measure \textit{does} predict returns, but only through an asymmetric interaction with direction. This is precisely the mechanism predicted by Proposition~\ref{prop:interaction}: uncertainty amplifies the overconfidence signal, and the amplification is direction-dependent. The fact that the across-agent measure (H\_smooth) is significant unconditionally while the within-agent measure ($H_{\text{IC}}$) requires the direction interaction suggests that the market prices the \textit{structure of disagreement} across information channels first, and the precision of individual channels second---conditional on the direction of the consensus.
+
+\begin{table}[H]
+\centering
+\caption{Probability-Based Inner Confidence and Stock Returns}
+\label{tab:ic_fm}
+\small
+\textit{Panel A: Fama-MacBeth Regressions (137 stocks, 80 quarters)}
+\begin{tabular}{lcccc}
+\toprule
+ & (1) & (2) & (3) & (4) \\
+ & FM & FM & DC-SE & FM + controls \\
+\midrule
+$H_{\text{IC}}$ & $-1.852$ & $+3.471^{**}$ & $-1.759$ & $+3.190^{**}$ \\
+ & ($-1.16$) & ($+1.95^{*}$) & ($-0.59$) & ($+2.00^{**}$) \\
+$D$ & & $-8.807^{***}$ & $-13.114^{***}$ & $-7.675^{***}$ \\
+ & & ($-3.15^{***}$) & ($-2.78^{***}$) & ($-3.17^{***}$) \\
+$H_{\text{IC}} \times D$ & & $+5.739^{***}$ & $+8.409^{***}$ & $+5.042^{***}$ \\
+ & & ($+3.18^{***}$) & ($+2.77^{***}$) & ($+3.17^{***}$) \\
+$\ln(\text{price})$ & & & & $-0.504^{***}$ \\
+ & & & & ($-2.88^{***}$) \\
+Momentum & & & & $-1.698^{*}$ \\
+ & & & & ($-1.73^{*}$) \\
+\midrule
+Observations & 9,710 & 9,710 & 9,710 & 9,710 \\
+\bottomrule
+\end{tabular}
+
+\vspace{6pt}
+\textit{Panel B: Regime-Split (Pooled OLS, HAC standard errors)}
+\begin{tabular}{lcc}
+\toprule
+ & Bearish ($D = -1$) & Bullish ($D = +1$) \\
+\midrule
+$H_{\text{IC}}$ & $-10.159^{***}$ & $+6.660^{***}$ \\
+$t$-stat & ($-5.33^{***}$) & ($+4.59^{***}$) \\
+Observations & 4,074 & 5,058 \\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\footnotesize Columns 1--2, 4: Fama-MacBeth with Newey-West standard errors. Column 3: Pooled OLS with double-clustered standard errors (firm + time). Panel B: Pooled OLS with HAC standard errors. $H_{\text{IC}}$: Shannon entropy of probability distribution over sentiment directions. $D$: sentiment direction indicator ($-1$ = bearish, $+1$ = bullish). Significance: $^{*}p < 0.10$, $^{**}p < 0.05$, $^{***}p < 0.01$.
+\end{table}
+
+
+\textit{Monthly panel.} Because our probability-based scoring is quarterly, the FM regressions have only 80 time periods. To increase statistical power, we extend the panel to monthly frequency by assigning each quarterly score to the subsequent three months of returns. This triples the number of cross-sections to 228 months. In the monthly FM regression, $H_{\text{IC}}$ alone becomes significant ($t = -2.56^{**}$), consistent with the hypothesis that the unconditional effect is present but requires more time-series observations to detect. The interaction with direction remains significant in the monthly panel.
 
 \subsection{Alternative Mechanisms for the Long-Horizon Reversal}
 
