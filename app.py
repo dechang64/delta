@@ -78,6 +78,7 @@ page = st.sidebar.radio("Navigate", [
     "📊 Overview",
     "🤖 Multi-Agent System",
     "📈 Key Results",
+    "🧪 Probability-Based IC (E3)",
     "🔬 Methodology",
     "🖼️ Figures",
     "🎮 Entropy Demo",
@@ -533,6 +534,97 @@ elif page == "🎮 Entropy Demo":
 # ══════════════════════════════════════════════════════════════
 # Page 7: About
 # ══════════════════════════════════════════════════════════════
+elif page == "🧪 Probability-Based IC (E3)":
+    st.markdown('<div class="main-header">Experiment 3: Probability-Based Inner Confidence</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sub-header">Within-Agent Uncertainty Meets Directional Asymmetry</div>', unsafe_allow_html=True)
+    
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.markdown('<div class="metric-card"><div class="metric-value">137</div><div class="metric-label">Stocks</div></div>', unsafe_allow_html=True)
+    with col2:
+        st.markdown('<div class="metric-card"><div class="metric-value">9,710</div><div class="metric-label">Obs</div></div>', unsafe_allow_html=True)
+    with col3:
+        st.markdown('<div class="metric-card"><div class="metric-value">3.17***</div><div class="metric-label">H×D (FM)</div></div>', unsafe_allow_html=True)
+    with col4:
+        st.markdown('<div class="metric-card"><div class="metric-value">2.77***</div><div class="metric-label">H×D (DC-SE)</div></div>', unsafe_allow_html=True)
+    
+    st.markdown("### 🔑 Key Innovation")
+    st.markdown("""
+    Instead of extracting a single sentiment label, we elicit the **full probability distribution** 
+    over discrete sentiment directions from each agent. The Shannon entropy of this distribution 
+    measures **Inner Confidence** — the within-agent uncertainty signal.
+    
+    Each agent processes **different information** and outputs to a **different probability space**:
+    - **Sentiment agent**: Returns + Volume + Volatility → {bearish, neutral, bullish}
+    - **Fundamental agent**: PE + PB + ROE + Debt → {overvalued, undervalued}  
+    - **Technical agent**: RSI + MACD + BB + ADX → {breakdown, range, breakout}
+    """)
+    
+    st.markdown("### 📊 FM Regression Results")
+    
+    # FM results table
+    fm_data = {
+        "Model": ["H_IC only", "H_IC + D + H×D", "DC-SE", "FM + Controls"],
+        "H_IC": ["-1.85 (t=-1.16)", "+3.47 (t=1.95*)", "-1.76 (t=-0.59)", "+3.19 (t=2.00**)"],
+        "D_sent": ["—", "-8.81 (t=-3.15***)", "-13.11 (t=-2.78***)", "-7.68 (t=-3.17***)"],
+        "H×D": ["—", "+5.74 (t=3.18***)", "+8.41 (t=2.77***)", "+5.04 (t=3.17***)"],
+    }
+    st.dataframe(fm_data, use_container_width=True)
+    
+    st.markdown("### 🐻🐂 Regime Split: The Asymmetric Effect")
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.markdown("""
+        <div class="finding-box">
+        <strong>🐻 Bearish Stocks</strong><br>
+        Higher IC → <strong>Lower</strong> returns<br>
+        β = -10.16, t = <strong>-5.33***</strong><br>
+        <em>Overconfident bears are punished</em>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_b:
+        st.markdown("""
+        <div class="finding-box">
+        <strong>🐂 Bullish Stocks</strong><br>
+        Higher IC → <strong>Higher</strong> returns<br>
+        β = +6.66, t = <strong>+4.59***</strong><br>
+        <em>Overconfident bulls are rewarded</em>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    The asymmetry confirms the **overconfidence mechanism**: uncertainty amplifies the directional signal.
+    Bears who are highly confident are *wrong more often*; bulls who are highly confident are also 
+    overconfident, but in the direction of the drift.
+    """)
+    
+    st.markdown("### 🛡️ Structural Concerns Addressed")
+    concerns = {
+        "Concern": [
+            "Q1: Same model = semantic drift?",
+            "Q2: Orthogonalization unstable?", 
+            "Q3: Familiarity bias?",
+            "Q4: Overlapping returns inflate t?"
+        ],
+        "Resolution": [
+            "Different inputs + different probability spaces. H_sent vs H_fund: r=0.036, direction conflict 48.7%",
+            "Probability-based IC eliminates need. Direct within-agent measurement, no JS-D collinearity",
+            "Named vs anonymized: r=0.748, named H HIGHER (+0.031) — opposite of familiarity prediction",
+            "Hodrick(1992) SE confirms. H×D robust to all methods (t>2.77). Beta autocorrelation ρ≈0"
+        ],
+        "Status": ["✅ Resolved", "✅ Resolved", "✅ Resolved", "✅ Resolved"]
+    }
+    st.dataframe(concerns, use_container_width=True)
+    
+    st.markdown("### 📈 Progressive Ablation (E1→E4)")
+    ablation = {
+        "Experiment": ["E1 (Current)", "E2", "E3", "E4"],
+        "Model": ["Same (Qwen) × 3 prompts", "Different × 3 prompts", "Different + LoRA", "Different + LoRA + KB"],
+        "Expected Signal": ["Baseline ✅", "Stronger", "Even stronger", "Strongest"],
+    }
+    st.dataframe(ablation, use_container_width=True)
+    st.info("Even E1 (single model with different inputs) produces significant signals → information channel differentiation is the key driver")
+
 elif page == "ℹ️ About":
     st.markdown('<div class="main-header">ℹ️ About</div>', unsafe_allow_html=True)
     st.markdown("""
