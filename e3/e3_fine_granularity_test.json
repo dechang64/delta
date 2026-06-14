@@ -1,0 +1,1692 @@
+{
+  "AAPL": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 48,
+          "neutral": 35,
+          "bullish": 17
+        },
+        "H": 1.473,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 48,
+          "neutral": 37,
+          "bullish": 15
+        },
+        "H": 1.4495,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 58,
+          "range": 31,
+          "breakout": 11
+        },
+        "H": 1.3299,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 63,
+          "range": 28,
+          "breakout": 9
+        },
+        "H": 1.2468,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 28,
+          "overvalued": 60
+        },
+        "H": 1.3235,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 23,
+          "overvalued": 65
+        },
+        "H": 1.2587,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 18,
+          "neutral": 27,
+          "bullish": 55
+        },
+        "H": 1.4297,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 18,
+          "neutral": 27,
+          "bullish": 55
+        },
+        "H": 1.4297,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 31,
+          "breakout": 46
+        },
+        "H": 1.5268,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 5
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 31,
+          "breakout": 46
+        },
+        "H": 1.5268,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 31,
+          "overvalued": 57
+        },
+        "H": 1.3531,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 23,
+          "overvalued": 65
+        },
+        "H": 1.2587,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "NVDA": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 12,
+          "neutral": 23,
+          "bullish": 65
+        },
+        "H": 1.2587,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 12,
+          "neutral": 23,
+          "bullish": 65
+        },
+        "H": 1.2587,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 23,
+          "breakout": 65
+        },
+        "H": 1.2587,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 9
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 23,
+          "breakout": 65
+        },
+        "H": 1.2587,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 9
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 28,
+          "overvalued": 60
+        },
+        "H": 1.3235,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 23,
+          "overvalued": 65
+        },
+        "H": 1.2587,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 31,
+          "bullish": 41
+        },
+        "H": 1.5654,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 31,
+          "breakout": 46
+        },
+        "H": 1.5268,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 5
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 38,
+          "breakout": 39
+        },
+        "H": 1.5479,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 28,
+          "overvalued": 60
+        },
+        "H": 1.3235,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 23,
+          "overvalued": 65
+        },
+        "H": 1.2587,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "MSFT": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 18,
+          "neutral": 27,
+          "bullish": 55
+        },
+        "H": 1.4297,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 18,
+          "neutral": 27,
+          "bullish": 55
+        },
+        "H": 1.4297,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 31,
+          "breakout": 46
+        },
+        "H": 1.5268,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 34,
+          "breakout": 43
+        },
+        "H": 1.5404,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 38,
+          "fair": 47,
+          "overvalued": 15
+        },
+        "H": 1.453,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 45,
+          "overvalued": 27
+        },
+        "H": 1.5426,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 32,
+          "neutral": 37,
+          "bullish": 31
+        },
+        "H": 1.5806,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 29,
+          "breakout": 59
+        },
+        "H": 1.3341,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 29,
+          "breakout": 59
+        },
+        "H": 1.3341,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 38,
+          "fair": 45,
+          "overvalued": 17
+        },
+        "H": 1.4834,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 45,
+          "overvalued": 27
+        },
+        "H": 1.5426,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "AMZN": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 18,
+          "neutral": 27,
+          "bullish": 55
+        },
+        "H": 1.4297,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 12,
+          "neutral": 28,
+          "bullish": 60
+        },
+        "H": 1.3235,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 28,
+          "range": 35,
+          "breakout": 37
+        },
+        "H": 1.5751,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 32,
+          "range": 41,
+          "breakout": 27
+        },
+        "H": 1.5634,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 5
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 39,
+          "overvalued": 33
+        },
+        "H": 1.5718,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 18,
+          "fair": 34,
+          "overvalued": 48
+        },
+        "H": 1.4828,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 32,
+          "neutral": 35,
+          "bullish": 33
+        },
+        "H": 1.584,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 18,
+          "range": 29,
+          "breakout": 53
+        },
+        "H": 1.4487,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 18,
+          "range": 31,
+          "breakout": 51
+        },
+        "H": 1.4645,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 35,
+          "overvalued": 37
+        },
+        "H": 1.5751,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 18,
+          "fair": 31,
+          "overvalued": 51
+        },
+        "H": 1.4645,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "TSLA": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 68,
+          "neutral": 24,
+          "bullish": 8
+        },
+        "H": 1.164,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 68,
+          "neutral": 24,
+          "bullish": 8
+        },
+        "H": 1.164,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 47,
+          "range": 38,
+          "breakout": 15
+        },
+        "H": 1.453,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 63,
+          "range": 28,
+          "breakout": 9
+        },
+        "H": 1.2468,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 5
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 5,
+          "fair": 12,
+          "overvalued": 83
+        },
+        "H": 0.8063,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 5,
+          "fair": 12,
+          "overvalued": 83
+        },
+        "H": 0.8063,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 23,
+          "neutral": 31,
+          "bullish": 46
+        },
+        "H": 1.5268,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 23,
+          "neutral": 31,
+          "bullish": 46
+        },
+        "H": 1.5268,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 23,
+          "breakout": 65
+        },
+        "H": 1.2587,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 9
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 23,
+          "breakout": 65
+        },
+        "H": 1.2587,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 8
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 23,
+          "overvalued": 65
+        },
+        "H": 1.2587,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 5,
+          "fair": 12,
+          "overvalued": 83
+        },
+        "H": 0.8063,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "PFE": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 38,
+          "neutral": 35,
+          "bullish": 27
+        },
+        "H": 1.5706,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 48,
+          "neutral": 31,
+          "bullish": 21
+        },
+        "H": 1.5049,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 38,
+          "range": 41,
+          "breakout": 21
+        },
+        "H": 1.5307,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 3
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 43,
+          "range": 32,
+          "breakout": 25
+        },
+        "H": 1.5496,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 3
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 48,
+          "fair": 32,
+          "overvalued": 20
+        },
+        "H": 1.4987,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 48,
+          "fair": 31,
+          "overvalued": 21
+        },
+        "H": 1.5049,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 32,
+          "neutral": 45,
+          "bullish": 23
+        },
+        "H": 1.5321,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 32,
+          "neutral": 41,
+          "bullish": 27
+        },
+        "H": 1.5634,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 41,
+          "breakout": 36
+        },
+        "H": 1.5457,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 41,
+          "breakout": 36
+        },
+        "H": 1.5457,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 48,
+          "fair": 32,
+          "overvalued": 20
+        },
+        "H": 1.4987,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 48,
+          "fair": 31,
+          "overvalued": 21
+        },
+        "H": 1.5049,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "CVX": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 58,
+          "range": 23,
+          "breakout": 19
+        },
+        "H": 1.3987,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 62,
+          "range": 18,
+          "breakout": 20
+        },
+        "H": 1.3373,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 45,
+          "overvalued": 27
+        },
+        "H": 1.5426,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 35,
+          "overvalued": 37
+        },
+        "H": 1.5751,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 43,
+          "neutral": 38,
+          "bullish": 19
+        },
+        "H": 1.5092,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 48,
+          "neutral": 35,
+          "bullish": 17
+        },
+        "H": 1.473,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 48,
+          "range": 31,
+          "breakout": 21
+        },
+        "H": 1.5049,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 48,
+          "range": 31,
+          "breakout": 21
+        },
+        "H": 1.5049,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 45,
+          "overvalued": 27
+        },
+        "H": 1.5426,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 35,
+          "overvalued": 37
+        },
+        "H": 1.5751,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "BA": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 58,
+          "neutral": 31,
+          "bullish": 11
+        },
+        "H": 1.3299,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 58,
+          "neutral": 32,
+          "bullish": 10
+        },
+        "H": 1.314,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 68,
+          "range": 23,
+          "breakout": 9
+        },
+        "H": 1.1787,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 68,
+          "range": 23,
+          "breakout": 9
+        },
+        "H": 1.1787,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 5,
+          "fair": 12,
+          "overvalued": 83
+        },
+        "H": 0.8063,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 5,
+          "fair": 12,
+          "overvalued": 83
+        },
+        "H": 0.8063,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 68,
+          "neutral": 23,
+          "bullish": 9
+        },
+        "H": 1.1787,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 68,
+          "neutral": 23,
+          "bullish": 9
+        },
+        "H": 1.1787,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 73,
+          "range": 22,
+          "breakout": 5
+        },
+        "H": 1.0281,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 9
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 68,
+          "range": 23,
+          "breakout": 9
+        },
+        "H": 1.1787,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 8
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 5,
+          "fair": 12,
+          "overvalued": 83
+        },
+        "H": 0.8063,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 5,
+          "fair": 12,
+          "overvalued": 83
+        },
+        "H": 0.8063,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "ABBV": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 22,
+          "neutral": 31,
+          "bullish": 47
+        },
+        "H": 1.5163,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 18,
+          "neutral": 27,
+          "bullish": 55
+        },
+        "H": 1.4297,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 18,
+          "range": 27,
+          "breakout": 55
+        },
+        "H": 1.4297,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 29,
+          "breakout": 59
+        },
+        "H": 1.3341,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 38,
+          "overvalued": 50
+        },
+        "H": 1.3975,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 23,
+          "overvalued": 65
+        },
+        "H": 1.2587,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 22,
+          "neutral": 31,
+          "bullish": 47
+        },
+        "H": 1.5163,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 41,
+          "breakout": 36
+        },
+        "H": 1.5457,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 41,
+          "breakout": 36
+        },
+        "H": 1.5457,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 28,
+          "overvalued": 60
+        },
+        "H": 1.3235,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 23,
+          "overvalued": 65
+        },
+        "H": 1.2587,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "ETN": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 18,
+          "neutral": 24,
+          "bullish": 58
+        },
+        "H": 1.3952,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 18,
+          "neutral": 27,
+          "bullish": 55
+        },
+        "H": 1.4297,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 23,
+          "breakout": 65
+        },
+        "H": 1.2587,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 9
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 23,
+          "breakout": 65
+        },
+        "H": 1.2587,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 9
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 28,
+          "overvalued": 60
+        },
+        "H": 1.3235,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 28,
+          "overvalued": 60
+        },
+        "H": 1.3235,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 22,
+          "neutral": 31,
+          "bullish": 47
+        },
+        "H": 1.5163,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 22,
+          "neutral": 31,
+          "bullish": 47
+        },
+        "H": 1.5163,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 23,
+          "breakout": 65
+        },
+        "H": 1.2587,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 8
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 12,
+          "range": 23,
+          "breakout": 65
+        },
+        "H": 1.2587,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 9
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 28,
+          "overvalued": 60
+        },
+        "H": 1.3235,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 12,
+          "fair": 28,
+          "overvalued": 60
+        },
+        "H": 1.3235,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "AEP": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 23,
+          "neutral": 31,
+          "bullish": 46
+        },
+        "H": 1.5268,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 23,
+          "neutral": 31,
+          "bullish": 46
+        },
+        "H": 1.5268,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 31,
+          "breakout": 46
+        },
+        "H": 1.5268,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 28,
+          "range": 31,
+          "breakout": 41
+        },
+        "H": 1.5654,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 38,
+          "fair": 45,
+          "overvalued": 17
+        },
+        "H": 1.4834,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 47,
+          "overvalued": 25
+        },
+        "H": 1.5262,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 22,
+          "neutral": 31,
+          "bullish": 47
+        },
+        "H": 1.5163,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 22,
+          "neutral": 31,
+          "bullish": 47
+        },
+        "H": 1.5163,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 31,
+          "breakout": 46
+        },
+        "H": 1.5268,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 18,
+          "range": 27,
+          "breakout": 55
+        },
+        "H": 1.4297,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 32,
+          "fair": 45,
+          "overvalued": 23
+        },
+        "H": 1.5321,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 47,
+          "overvalued": 25
+        },
+        "H": 1.5262,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "ADP": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 41,
+          "bullish": 31
+        },
+        "H": 1.5654,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 45,
+          "bullish": 27
+        },
+        "H": 1.5426,
+        "direction": "bearish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 31,
+          "breakout": 46
+        },
+        "H": 1.5268,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 31,
+          "breakout": 46
+        },
+        "H": 1.5268,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 6
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 53,
+          "overvalued": 19
+        },
+        "H": 1.4549,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 45,
+          "overvalued": 27
+        },
+        "H": 1.5426,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 23,
+          "neutral": 35,
+          "bullish": 42
+        },
+        "H": 1.5434,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 18,
+          "range": 31,
+          "breakout": 51
+        },
+        "H": 1.4645,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 18,
+          "range": 29,
+          "breakout": 53
+        },
+        "H": 1.4487,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 7
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 47,
+          "overvalued": 25
+        },
+        "H": 1.5262,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 41,
+          "overvalued": 31
+        },
+        "H": 1.5654,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  },
+  "AON": {
+    "2024-03": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 22,
+          "neutral": 31,
+          "bullish": 47
+        },
+        "H": 1.5163,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 48,
+          "range": 15,
+          "breakout": 37
+        },
+        "H": 1.4495,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 9
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 48,
+          "range": 19,
+          "breakout": 33
+        },
+        "H": 1.4913,
+        "direction": "breakdown",
+        "model": "qwen-plus",
+        "trend_strength": 8
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 45,
+          "overvalued": 27
+        },
+        "H": 1.5426,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 35,
+          "overvalued": 37
+        },
+        "H": 1.5751,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    },
+    "2024-09": {
+      "('sentiment', 'named')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 35,
+          "bullish": 37
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('sentiment', 'anon')": {
+        "probs": {
+          "bearish": 28,
+          "neutral": 37,
+          "bullish": 35
+        },
+        "H": 1.5751,
+        "direction": "bullish",
+        "model": "qwen-plus"
+      },
+      "('technical', 'named')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 41,
+          "breakout": 36
+        },
+        "H": 1.5457,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('technical', 'anon')": {
+        "probs": {
+          "breakdown": 23,
+          "range": 41,
+          "breakout": 36
+        },
+        "H": 1.5457,
+        "direction": "breakout",
+        "model": "qwen-plus",
+        "trend_strength": 4
+      },
+      "('fundamental', 'named')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 45,
+          "overvalued": 27
+        },
+        "H": 1.5426,
+        "direction": "undervalued",
+        "model": "qwen-plus"
+      },
+      "('fundamental', 'anon')": {
+        "probs": {
+          "undervalued": 28,
+          "fair": 35,
+          "overvalued": 37
+        },
+        "H": 1.5751,
+        "direction": "overvalued",
+        "model": "qwen-plus"
+      }
+    }
+  }
+}
