@@ -1,0 +1,39 @@
+
+E3: Probability-Based Uncertainty and Stock Returns
+=====================================================
+
+Panel: 137 stocks (46 high + 91 medium disagreement), 80 quarters, 2005-2024
+Scoring: 2 agents (sentiment, fundamental), named mode, quarterly
+Total LLM calls: ~19,000
+
+KEY RESULTS (Fama-MacBeth, Newey-West SE):
+─────────────────────────────────────────
+                                    FM t-stat    DC t-stat
+H_sent alone                        -1.16        -1.53
+D_sent (direction)                  -3.17***     -2.78***
+H_sent × D_sent (interaction)       +3.17***     +2.77***
+H_sent (conditional on direction)   +2.00**       —
+
+Monthly panel FM: H_sent t = -2.56** (228 months)
+
+REGIME SPLIT (pooled OLS, HAC SE):
+──────────────────────────────────
+Bearish stocks: H_sent → lower returns (β=-10.16, t=-5.33***)
+Bullish stocks: H_sent → higher returns (β=+6.66, t=+4.59***)
+
+INTERPRETATION:
+──────────────
+Same asymmetric mechanism as Delta paper:
+- High uncertainty AMPLIFIES the directional signal
+- When agents are bearish but uncertain: bears are overconfident → lower future returns
+- When agents are bullish but uncertain: bulls are overconfident → higher future returns
+- The asymmetry suggests overconfidence drives the effect
+
+Medium stocks drive the result (H_sent t=2.05** vs high t=0.14)
+→ Signal stronger in less-analyst-covered stocks
+
+CONTROLS:
+─────────
+ln_price t=-2.88*** (smaller stocks earn more)
+momentum t=-1.73* (momentum reversal)
+volatility t=1.60 (not significant after controls)

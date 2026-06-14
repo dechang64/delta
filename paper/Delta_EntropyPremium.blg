@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Delta_EntropyPremium.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+You've used 46 entries,
+            2773 wiz_defined-function locations,
+            894 strings with 11430 characters,
+and the built_in function-call counts, 20865 in all, are:
+= -- 1939
+> -- 1039
+< -- 32
++ -- 356
+- -- 309
+* -- 1718
+:= -- 3183
+add.period$ -- 138
+call.type$ -- 46
+change.case$ -- 239
+chr.to.int$ -- 45
+cite$ -- 92
+duplicate$ -- 932
+empty$ -- 1793
+format.name$ -- 391
+if$ -- 4341
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 46
+newline$ -- 238
+num.names$ -- 184
+pop$ -- 417
+preamble$ -- 1
+purify$ -- 193
+quote$ -- 0
+skip$ -- 701
+stack$ -- 0
+substring$ -- 1119
+swap$ -- 58
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 501
+warning$ -- 0
+while$ -- 213
+width$ -- 0
+write$ -- 597
