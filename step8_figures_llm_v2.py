@@ -37,7 +37,7 @@ def fama_macbeth_nw(panel, y_col, x_cols, nw_lag=None):
             beta, _, _, _ = lstsq(X, y, rcond=None)
             for i, col in enumerate(x_cols):
                 betas[col].append(beta[i + 1])
-        except:
+        except Exception:
             continue
     
     results = {}
@@ -101,7 +101,7 @@ for signal in signals_plot:
             try:
                 b, _, _, _ = lstsq(X, y, rcond=None)
                 betas_ts.append(b[1])
-            except:
+            except Exception:
                 continue
         ci = 1.96 * np.std(betas_ts, ddof=1) / np.sqrt(len(betas_ts))
         uni_cis.append(ci)
@@ -305,7 +305,7 @@ fig, ax = plt.subplots(figsize=(9, 5))
 try:
     old = json.load(open(os.path.join(OUT, "analysis_results.json")))
     old_fm = old.get("fm_univariate", {})
-except:
+except Exception:
     old_fm = {}
 
 signals_cmp = ["JS_post", "D_post", "H_sentiment", "confidence"]

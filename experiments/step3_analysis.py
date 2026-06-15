@@ -183,7 +183,7 @@ def fama_macbeth(panel: list, y_col: str, x_cols: list,
             result, _, _, _ = lstsq(X, y, rcond=None)
             for i, col in enumerate(x_cols):
                 betas[col].append(result[i + 1])
-        except:
+        except Exception:
             continue
 
     results = {}

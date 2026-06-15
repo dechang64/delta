@@ -119,7 +119,7 @@ for ticker in panel["ticker"].unique():
         predicted = X @ beta
         resid = y - predicted
         stock_alphas[ticker] = {"alpha": alpha, "resid_std": np.std(resid), "n": len(stk)}
-    except:
+    except Exception:
         continue
 
 # Add FF5-adjusted return
@@ -176,7 +176,7 @@ def fama_macbeth(panel, y_col, x_cols, nw_lag=6):
             for i, col in enumerate(x_cols):
                 betas[col].append(beta[i + 1])
             n_months += 1
-        except:
+        except Exception:
             continue
     
     results = {}

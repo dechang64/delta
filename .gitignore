@@ -1,30 +1,27 @@
-# Data files (too large for GitHub)
-*.json
-*.csv
-*.zip
-*.log
 
 # Checkpoints
-llm_*checkpoint*.json
-
-# Old figures (keep figures_final/)
-figures/
-figures_llm/
-figures_llm_v2/
-
-# Python cache
-__pycache__/
-*.pyc
-
+# Data files (too large for GitHub)
 # OS files
-.DS_Store
-
+# Old figures (keep figures_final/)
 # Paper files (shown via Streamlit dashboard)
-*.docx
-*.tex
-*.pdf
+# Python cache
 *.aux
 *.bbl
 *.blg
+*.csv
+*.docx
+*.json
+*.log
 *.out
-
+*.pdf
+*.pyc
+*.tex
+*.zip
+.DS_Store
+.env
+.venv/
+__pycache__/
+figures/
+figures_llm/
+figures_llm_v2/
+llm_*checkpoint*.json

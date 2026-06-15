@@ -219,7 +219,7 @@ for ticker, grp in panel.groupby("ticker"):
             y = window["excess_return"].values
             beta, _, _, _ = lstsq(X, y, rcond=None)
             ticker_alphas[i] = beta[0]
-        except:
+        except Exception:
             continue
     alphas.extend(ticker_alphas)
 
@@ -269,7 +269,7 @@ def fama_macbeth(panel, y_col, x_cols, nw_lag=None, min_obs=10):
             for i, col in enumerate(x_cols):
                 betas[col].append(beta[i + 1])
             n_months += 1
-        except:
+        except Exception:
             continue
     
     results = {}
@@ -431,7 +431,7 @@ try:
             print(f"  Quant H_resid: t={r['t_stat']:+.2f}{r['sig']}")
     else:
         print("  (Quant panel missing H_smooth_resid_z)")
-except:
+except Exception:
     print("  (Quant comparison data not available)")
 
 # ── Save ──

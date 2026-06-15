@@ -174,7 +174,7 @@ for ticker in panel["ticker"].unique():
         predicted = X @ beta
         resid = y - predicted
         stock_alphas[ticker] = {"alpha": alpha, "resid_std": np.std(resid), "n": len(stk)}
-    except:
+    except Exception:
         continue
 
 alpha_map = {t: v["alpha"] for t, v in stock_alphas.items()}
@@ -227,7 +227,7 @@ def fama_macbeth(panel, y_col, x_cols, nw_lag=None):
             for i, col in enumerate(x_cols):
                 betas[col].append(beta[i + 1])
             n_months += 1
-        except:
+        except Exception:
             continue
     
     results = {}
@@ -445,7 +445,7 @@ try:
     new_ls = js_dec.get("Long-Short", {})
     print(f"    Quant: {old_ls.get('mean_monthly_pct', 0):+.2f}%/mo  t={old_ls.get('t_stat', 0):+.2f}")
     print(f"    LLM:   {new_ls.get('mean_monthly_pct', 0):+.2f}%/mo  t={new_ls.get('t_stat', 0):+.2f}")
-except:
+except Exception:
     print("  (Old results not available for comparison)")
 
 # ── Save everything ──

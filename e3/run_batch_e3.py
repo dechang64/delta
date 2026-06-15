@@ -64,7 +64,7 @@ def cache_all_data(tickers):
                     csv_path = os.path.join(CACHE_DIR, f"daily_{t}.csv")
                     df.to_csv(csv_path)
                     cached_list.append(t)
-            except:
+            except Exception:
                 pass
             if (i+1) % 10 == 0 or i == len(remaining_daily)-1:
                 with open(daily_path, 'w') as f:
@@ -88,7 +88,7 @@ def cache_all_data(tickers):
                 if feat and len(feat) >= 6:
                     fund_cache[t] = {k: float(v) if isinstance(v, (np.floating, float)) else v 
                                      for k, v in feat.items()}
-            except:
+            except Exception:
                 pass
             if (i+1) % 10 == 0 or i == len(remaining_fund)-1:
                 with open(fund_path, 'w') as f:
@@ -136,7 +136,7 @@ def score_task(task, stock_monthly, daily_cache_list, fund_cache, anon=False):
         try:
             df = pd.read_csv(csv_path, index_col=0, parse_dates=True)
             feat = compute_technical_features(df, f"{month}-28")
-        except:
+        except Exception:
             return None
     else:  # fundamental
         if ticker not in fund_cache:

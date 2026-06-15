@@ -112,7 +112,7 @@ def fm_regression(df, signal, min_obs=10):
         try:
             beta = np.linalg.lstsq(X, y, rcond=None)[0]
             betas.append(beta[1])  # slope
-        except:
+        except Exception:
             continue
     
     if len(betas) < 10:

@@ -174,7 +174,7 @@ if ff5_factor_cols:
                 "resid_std": np.std(resid),
                 "n_obs": len(stk),
             }
-        except:
+        except Exception:
             continue
     
     print(f"FF5 alphas computed for {len(stock_alphas)} stocks")
@@ -235,7 +235,7 @@ def fama_macbeth(panel, y_col, x_cols, month_col="month"):
             for i, col in enumerate(x_cols):
                 betas[col].append(beta[i+1])
             n_months += 1
-        except:
+        except Exception:
             continue
     
     # Fama-MacBeth estimator: time-series average of monthly betas

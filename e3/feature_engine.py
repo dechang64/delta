@@ -495,7 +495,7 @@ def batch_download_daily(tickers: list[str], save_dir: str = None, batch_size: i
                 df = pd.read_parquet(cache_path)
                 results[ticker] = df
                 continue
-            except:
+            except Exception:
                 pass
         
         # Download
@@ -505,7 +505,7 @@ def batch_download_daily(tickers: list[str], save_dir: str = None, batch_size: i
             # Cache
             try:
                 df.to_parquet(cache_path)
-            except:
+            except Exception:
                 pass
         else:
             failed.append(ticker)

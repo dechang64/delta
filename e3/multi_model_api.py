@@ -164,7 +164,7 @@ def parse_json_response(text: str) -> dict:
         if match:
             try:
                 return json.loads(match.group())
-            except:
+            except Exception:
                 pass
     
     # Fallback: try to extract score number

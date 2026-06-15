@@ -270,7 +270,7 @@ for ticker in panel["ticker"].unique():
                 next_idx = stk.index[end_idx]
                 panel.loc[next_idx, "ff5_alpha"] = alpha
                 panel.loc[next_idx, "ff5_adjusted_return"] = stk.loc[end_idx, "excess_return"] - alpha
-        except:
+        except Exception:
             continue
 
 valid_alpha = panel["ff5_alpha"].dropna()
@@ -328,7 +328,7 @@ def fama_macbeth(panel, y_col, x_cols, nw_lag=None):
             for i, col in enumerate(x_cols):
                 betas[col].append(beta[i + 1])
             n_months += 1
-        except:
+        except Exception:
             continue
     
     results = {}

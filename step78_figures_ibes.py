@@ -76,7 +76,7 @@ def fama_macbeth_nw(panel, y_col, x_cols, nw_lag=6):
             beta, _, _, _ = lstsq(X, y, rcond=None)
             for i, col in enumerate(x_cols):
                 betas[col].append(beta[i + 1])
-        except:
+        except Exception:
             continue
     
     results = {}
@@ -267,7 +267,7 @@ for month in months_sorted:
         slope, intercept, r, p, se = stats.linregress(md["JS_post"], md["excess_return"])
         monthly_js_beta.append(slope)
         monthly_dates.append(month)
-    except:
+    except Exception:
         continue
 
 # Rolling 24-month average
