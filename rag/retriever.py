@@ -36,6 +36,10 @@ class KnowledgeRetriever:
     def search(self, query: str, top_k: int = 5) -> List[str]:
         """Search knowledge base, returning only documents before cutoff_date.
 
+        FedCtx integration: when unified-fl-backend is available, delegates
+        HNSW search to the Rust server for better performance.
+        Falls back to local file search when FedCtx is unavailable.
+
         Args:
             query: Search query (ticker + date + domain)
             top_k: Number of results to return
@@ -43,6 +47,24 @@ class KnowledgeRetriever:
         Returns:
             List of document strings, each prefixed with its date
         """
+        # Try FedCtx hybrid search
+        try:
+            from core.grpc_client import get_fedctx_client
+            client = get_fedctx_client()
+            if client.available:
+                resp = client.hybrid_search(query=query, k=top_k)
+                if resp and resp.get("results"):
+                    results = []
+                    for hit in resp["results"]:
+                        content = hit.get("metadata", {}).get("content", "")
+                        date = hit.get("metadata", {}).get("date", "")
+                        if content and (not self.cutoff_date or date <= self.cutoff_date):
+                            results.append(f"[{date}] {content}")
+                    if results:
+                        return results[:top_k]
+        except (ImportError, Exception):
+            pass  # Fall through to local search
+
         if self.use_chroma:
             return self._search_chroma(query, top_k)
         else:
