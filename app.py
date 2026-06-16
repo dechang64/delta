@@ -79,6 +79,7 @@ page = st.sidebar.radio("Navigate", [
     "🤖 Multi-Agent System",
     "📈 Key Results",
     "🧪 Probability-Based IC (E3)",
+    "🔇 Prompt-Noise Baseline (E5)",
     "🔬 Methodology",
     "🖼️ Figures",
     "🎮 Entropy Demo",
@@ -329,6 +330,124 @@ elif page == "📈 Key Results":
     |------------|-----------|-----------|---------|
     | LLM Agents | −3.02 | −3.60 | Strengthening ✅ |
     | Quant Model | −1.89 | −1.21 | Decaying ❌ |
+    """)
+
+
+elif page == "🔇 Prompt-Noise Baseline (E5)":
+    st.markdown('<div class="main-header">🔇 Experiment 5: Prompt-Noise Baseline</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sub-header">Proving Agent Disagreement Is Real, Not Prompt Noise</div>', unsafe_allow_html=True)
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.markdown('<div class="metric-card"><div class="metric-value">2,530</div><div class="metric-label">Stock-Quarters</div></div>', unsafe_allow_html=True)
+    with col2:
+        st.markdown('<div class="metric-card"><div class="metric-value">1.55x</div><div class="metric-label">JS Ratio (E1/E5)</div></div>', unsafe_allow_html=True)
+    with col3:
+        st.markdown('<div class="metric-card"><div class="metric-value">12.95***</div><div class="metric-label">Paired t-stat</div></div>', unsafe_allow_html=True)
+    with col4:
+        st.markdown('<div class="metric-card"><div class="metric-value">25x</div><div class="metric-label">P(JS&gt;0.10) Ratio</div></div>', unsafe_allow_html=True)
+
+    st.markdown("### 🔑 Experimental Design")
+    st.markdown("""
+    <div class="finding-box">
+    <strong>Question:</strong> Is multi-agent disagreement driven by genuine <em>information channel specialization</em>,
+    or is it just <em>prompt noise</em> — different prompts producing different outputs even with the same data?
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    | | E1 (Agent Specialization) | E5 (Prompt Noise) |
+    |---|---|---|
+    | **Model** | Same (qwen-plus) | Same (qwen-plus) |
+    | **Input** | Agent-specific features | **All features (same)** |
+    | **Prompt** | Agent-specific analysis | **3 analyst personas** |
+    | **Prediction** | Genuine disagreement | Noise floor |
+
+    - **Conservative persona**: "Focus on downside risks and capital preservation"
+    - **Growth persona**: "Focus on upside potential and growth trajectory"
+    - **Balanced persona**: "Weigh both risks and opportunities equally"
+    """)
+
+    st.markdown("---")
+    st.markdown("### 📊 Results: JS Divergence Distribution")
+
+    js_data = {
+        "Percentile": ["10%", "25%", "50%", "75%", "90%", "95%"],
+        "E1 (Agent Spec)": ["0.004", "0.011", "0.032", "0.082", "0.176", "0.215"],
+        "E5 (Prompt Noise)": ["0.006", "0.020", "0.035", "0.057", "0.073", "0.075"],
+        "E1/E5 Ratio": ["0.60x", "0.57x", "0.91x", "1.45x", "2.42x", "2.88x"],
+    }
+    st.dataframe(js_data, use_container_width=True)
+
+    st.markdown("""
+    <div class="warning-box">
+    <strong>🔑 Key Insight:</strong> At the median, E1 and E5 are similar (0.91x).
+    But in the <strong>right tail</strong> — where disagreement is high — E1 dominates:<br>
+    • P90: E1 is 2.4x higher than E5<br>
+    • P95: E1 is 2.9x higher than E5<br>
+    • <strong>High-disagreement events are almost exclusively from agent specialization.</strong>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("### 🎯 Right-Tail: Where the Signal Lives")
+
+    tail_data = {
+        "Threshold": ["JS > 0.05", "JS > 0.10", "JS > 0.15", "JS > 0.20"],
+        "E1 %": ["38.6%", "19.6%", "12.2%", "6.9%"],
+        "E5 %": ["34.3%", "0.8%", "0.0%", "0.0%"],
+        "Odds Ratio": ["1.1x", "25x", "∞", "∞"],
+    }
+    st.dataframe(tail_data, use_container_width=True)
+
+    st.markdown("""
+    **P(JS > 0.10)**: E1 = 19.6% vs E5 = 0.8% — agent specialization produces high-disagreement
+    events 25× more often than prompt noise. These high-disagreement events are precisely
+    what predicts future returns in the Fama-MacBeth regressions.
+    """)
+
+    st.markdown("---")
+    st.markdown("### 🧠 Why E5 Disagreement Is Different")
+
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.markdown("""
+        <div class="warning-box">
+        <strong>E5 (Prompt Noise): Fixed Directional Tilt</strong><br>
+        • Conservative: 13% bullish (always bearish)<br>
+        • Growth: 43% bullish (always bullish)<br>
+        • Balanced: 26% bullish (always moderate)<br><br>
+        <em>"Fake disagreement" — each persona has a fixed tilt
+        that doesn't respond to market conditions.</em>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_b:
+        st.markdown("""
+        <div class="finding-box">
+        <strong>E1 (Agent Specialization): Conditional Disagreement</strong><br>
+        • Sentiment: 33% bullish (responds to momentum)<br>
+        • Fundamental: 43% overvalued (responds to valuation)<br><br>
+        <em>"Genuine disagreement" — disagreement spikes when
+        different information channels conflict.</em>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("### 📝 Paper Implication")
+    st.markdown("""
+    This experiment directly addresses the reviewer concern: *"Is your disagreement just prompt noise?"*
+
+    **Answer**: No. Prompt noise produces low-level, constant disagreement.
+    Agent specialization produces **conditional, information-driven** disagreement
+    that concentrates in the right tail — exactly where return predictability lives.
+
+    | | JS (mean) | JS (P90) | P(JS>0.10) |
+    |---|---|---|---|
+    | **E1 (Agent Spec)** | 0.060*** | 0.176 | 19.6% |
+    | **E5 (Prompt Noise)** | 0.039 | 0.073 | 0.8% |
+    | **Difference** | 0.021*** | +0.103 | +18.8pp |
+
+    Paired t-test: t = 12.95, p < 0.001. The difference is highly significant.
     """)
 
 
@@ -616,11 +735,11 @@ elif page == "🧪 Probability-Based IC (E3)":
     }
     st.dataframe(concerns, use_container_width=True)
     
-    st.markdown("### 📈 Progressive Ablation (E1→E4)")
+    st.markdown("### 📈 Progressive Ablation (E1→E5)")
     ablation = {
-        "Experiment": ["E1 (Current)", "E2", "E3", "E4"],
-        "Model": ["Same (Qwen) × 3 prompts", "Different × 3 prompts", "Different + LoRA", "Different + LoRA + KB"],
-        "Expected Signal": ["Baseline ✅", "Stronger", "Even stronger", "Strongest"],
+        "Experiment": ["E1 (Current)", "E2", "E3", "E4", "E5 (Baseline)"],
+        "Model": ["Same (Qwen) × 3 prompts", "Different × 3 prompts", "Different + LoRA", "Different + LoRA + KB", "Same model + Same input + 3 personas"],
+        "Expected Signal": ["Baseline ✅", "Stronger", "Even stronger", "Strongest", "Noise floor (1.55x < E1)"],
     }
     st.dataframe(ablation, use_container_width=True)
     st.info("Even E1 (single model with different inputs) produces significant signals → information channel differentiation is the key driver")
