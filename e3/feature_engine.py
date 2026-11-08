@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 feature_engine.py — Agent-specific feature computation for Delta V2
 
