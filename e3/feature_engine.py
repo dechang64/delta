@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+
 """
 feature_engine.py — Agent-specific feature computation for Delta V2
 
@@ -130,10 +131,20 @@ def compute_technical_features(daily_df: pd.DataFrame, as_of_date: str) -> Optio
     if len(df) < 60:  # need at least 60 trading days
         return None
     
-    close = df["Close"].values
-    high = df["High"].values
-    low = df["Low"].values
-    volume = df["Volume"].values
+    # Normalize column names (accept both 'Close' and 'close')
+    col_map = {}
+    for col in df.columns:
+        col_map[col.lower()] = col
+    def _get_col(name):
+        for variant in [name, name.lower(), name.upper(), name.capitalize()]:
+            if variant in df.columns:
+                return variant
+        raise KeyError(f"Column '{name}' not found. Available: {list(df.columns)}")
+    
+    close = df[_get_col("Close")].values
+    high = df[_get_col("High")].values
+    low = df[_get_col("Low")].values
+    volume = df[_get_col("Volume")].values
     
     # ── RSI(14) ──
     deltas = np.diff(close)
@@ -563,7 +574,7 @@ def compile_all_features(
                 feat["sentiment"] = sent
             
             # Technical features (from daily data)
-            if daily_data and ticker in daily_data:
+            if daily_data and ticker in daily_data and daily_data[ticker] is not None:
                 # Convert quarter to approximate end date
                 q_date = f"{quarter}-28"
                 tech = compute_technical_features(daily_data[ticker], q_date)

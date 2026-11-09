@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+
 """
 scoring_v2.py — Probability-based scoring for Delta V2 (E2/E3)
 
